@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://0g1k80ov1bbr"
+path="res://.godot/imported/obstacle-block.obj-0317682cb3562f1b2984cf94b2c16d21.mesh"
+
+[deps]
+
+files=["res://.godot/imported/obstacle-block.obj-0317682cb3562f1b2984cf94b2c16d21.mesh"]
+
+source_file="res://kenney_minigolf-kit/Models/OBJ format/obstacle-block.obj"
+dest_files=["res://.godot/imported/obstacle-block.obj-0317682cb3562f1b2984cf94b2c16d21.mesh", "res://.godot/imported/obstacle-block.obj-0317682cb3562f1b2984cf94b2c16d21.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

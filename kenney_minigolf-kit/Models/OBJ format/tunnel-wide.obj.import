@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://te4qt1vsxnuh"
+path="res://.godot/imported/tunnel-wide.obj-8c3e66fdfaa03b43dda138a82a8fccba.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tunnel-wide.obj-8c3e66fdfaa03b43dda138a82a8fccba.mesh"]
+
+source_file="res://kenney_minigolf-kit/Models/OBJ format/tunnel-wide.obj"
+dest_files=["res://.godot/imported/tunnel-wide.obj-8c3e66fdfaa03b43dda138a82a8fccba.mesh", "res://.godot/imported/tunnel-wide.obj-8c3e66fdfaa03b43dda138a82a8fccba.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
