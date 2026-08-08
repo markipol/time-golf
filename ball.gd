@@ -5,6 +5,7 @@ var yaw := 0.0             # degrees
 var power := 0.0
 var max_power := 100.0
 var min_power := 0.0
+@export var label: Label
 
 var angle_speed := 90.0    # degrees per second
 var power_speed := 50.0    # units per second
@@ -12,6 +13,7 @@ var power_speed := 50.0    # units per second
 func _ready() -> void:
 	yaw = rad_to_deg(rotation.y)
 	$InspectorArrow.hide()
+	%ShotArrow.show()
 	
 func _physics_process(delta):
 	# --- AIM LEFT/RIGHT ---
@@ -51,3 +53,13 @@ func _physics_process(delta):
 		# Apply force in the aimed direction
 		var force := Vector3(angle.x, 0, angle.y) * power
 		apply_central_impulse(force)
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	print("i knew you could do it")
+	label.show()
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	print("i knew you could do it")
+	label.show()

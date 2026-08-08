@@ -35,6 +35,9 @@ size = Vector3(0.01, 0.01, 0.1)
 [sub_resource type="PrismMesh" id="PrismMesh_02wvc"]
 size = Vector3(0.025, 0.01, 0.01)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oc035"]
+size = Vector3(0.13, 0.011, 0.13)
+
 [node name="Node3D" type="Node3D" unique_id=1383054765]
 
 [node name="straight2" parent="." unique_id=871488194 instance=ExtResource("1_7mycd")]
@@ -65,9 +68,11 @@ shape = SubResource("ConcavePolygonShape3D_dg77c")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1684026385]
 transform = Transform3D(1, 0, 0, 0, 0.10653621, 0.9943088, 0, -0.9943088, 0.10653621, 0, 2.6815395, -1.1366992)
 
-[node name="Ball" type="RigidBody3D" parent="." unique_id=207864282]
-transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0, 0.25, 0)
+[node name="Ball" type="RigidBody3D" parent="." unique_id=207864282 node_paths=PackedStringArray("label")]
+transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0, 0.31389987, -0.024847567)
+collision_layer = 3
 script = ExtResource("6_dg77c")
+label = NodePath("../CanvasLayer/Node2D/Label")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball" unique_id=1104073929]
 shape = SubResource("SphereShape3D_oc035")
@@ -114,6 +119,14 @@ script = ExtResource("7_5vw27")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Piece4" unique_id=959135498]
 mesh = ExtResource("10_dg77c")
 
+[node name="Area3D" type="Area3D" parent="Piece4" unique_id=1400993074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.037836265, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Piece4/Area3D" unique_id=1325236721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2204051e-05, 0, 0.0004711151)
+shape = SubResource("BoxShape3D_oc035")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1861630881]
 transform = Transform3D(1, 0, 0, 0, -0.4795209, 0.87753046, 0, -0.87753046, -0.4795209, 0, 0, 0)
 shadow_enabled = true
@@ -121,6 +134,7 @@ shadow_enabled = true
 [node name="ShotArrow" type="Node3D" parent="." unique_id=1968826682]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.25, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ShotArrow" unique_id=266339390]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.09996557)
@@ -129,3 +143,18 @@ mesh = SubResource("BoxMesh_02wvc")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="ShotArrow" unique_id=900870742]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.15462497)
 mesh = SubResource("PrismMesh_02wvc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=76987635]
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer" unique_id=375344589]
+
+[node name="Label" type="Label" parent="CanvasLayer/Node2D" unique_id=1455396676]
+visible = false
+offset_left = 495.0
+offset_top = 339.0
+offset_right = 568.0
+offset_bottom = 362.0
+text = "you did it"
+
+[connection signal="area_entered" from="Piece4/Area3D" to="Ball" method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Piece4/Area3D" to="Ball" method="_on_area_3d_body_entered"]
