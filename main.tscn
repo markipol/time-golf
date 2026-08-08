@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://bkk682wpaw181"]
+
+[ext_resource type="PackedScene" uid="uid://7u10ighvfqc4" path="res://kenney_minigolf-kit/Models/GLB format/straight.glb" id="1_7mycd"]
+[ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="2_272bh"]
+[ext_resource type="PackedScene" uid="uid://dndrtyreluq5w" path="res://kenney_minigolf-kit/Models/GLB format/hole-round.glb" id="3_5vw27"]
+[ext_resource type="PackedScene" uid="uid://dh3scxi7nciy6" path="res://kenney_minigolf-kit/Models/GLB format/end.glb" id="4_kek77"]
+[ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="6_dg77c"]
+[ext_resource type="ArrayMesh" uid="uid://dmji810s4ruc2" path="res://kenney_minigolf-kit/Models/OBJ format/end.obj" id="6_efxa6"]
+[ext_resource type="Script" uid="uid://dimbbbyqpvlq" path="res://piece.gd" id="7_5vw27"]
+[ext_resource type="ArrayMesh" uid="uid://dtq8sfjxkayj2" path="res://kenney_minigolf-kit/Models/OBJ format/ball-red.obj" id="7_272bh"]
+[ext_resource type="ArrayMesh" uid="uid://k5bnpcs7wxyt" path="res://kenney_minigolf-kit/Models/OBJ format/straight.obj" id="8_4c57u"]
+[ext_resource type="ArrayMesh" uid="uid://vxv2tsiei8yw" path="res://kenney_minigolf-kit/Models/OBJ format/castle.obj" id="9_efxa6"]
+[ext_resource type="ArrayMesh" uid="uid://vof1o6tlv2sw" path="res://kenney_minigolf-kit/Models/OBJ format/hole-round.obj" id="10_dg77c"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_m11on"]
+panorama = ExtResource("2_272bh")
+
+[sub_resource type="Sky" id="Sky_4xkj2"]
+sky_material = SubResource("PanoramaSkyMaterial_m11on")
+
+[sub_resource type="Environment" id="Environment_02wvc"]
+background_mode = 2
+sky = SubResource("Sky_4xkj2")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dg77c"]
+data = PackedVector3Array(-0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0.1467, 0.5, 0.5, 0.1467, -0.5, 0.5, 0.1467, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.39999998, 0.1467, 0.39999998, -0.5, 0.1467, -0.5, -0.39999998, 0.1467, -0.5, -0.39999998, 0.1467, 0.39999998, -0.5, 0.1467, 0.5, -0.5, 0.1467, -0.5, 0.39999998, 0.1467, 0.39999998, -0.5, 0.1467, 0.5, -0.39999998, 0.1467, 0.39999998, 0.39999998, 0.1467, 0.39999998, 0.5, 0.1467, 0.5, -0.5, 0.1467, 0.5, 0.39999998, 0.1467, -0.5, 0.5, 0.1467, 0.5, 0.39999998, 0.1467, 0.39999998, 0.5, 0.1467, 0.5, 0.39999998, 0.1467, -0.5, 0.5, 0.1467, -0.5, -0.5, 0.1467, -0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.1467, -0.5, -0.5, 0.1467, 0.5, -0.5, 0.1467, -0.5, -0.39999998, 0.0633, -0.5, -0.39999998, 0.1467, -0.5, -0.5, 0, -0.5, -0.39999998, 0.0633, -0.5, -0.5, 0.1467, -0.5, -0.39999998, 0.0633, -0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0, -0.5, 0.39999998, 0.0633, -0.5, -0.39999998, 0.0633, -0.5, 0.39999998, 0.0633, -0.5, 0.5, 0, -0.5, 0.5, 0.1467, -0.5, 0.39999998, 0.0633, -0.5, 0.5, 0.1467, -0.5, 0.39999998, 0.1467, -0.5, -0.39999998, 0.0633, -0.5, -0.39999998, 0.1467, 0.39999998, -0.39999998, 0.1467, -0.5, -0.39999998, 0.1467, 0.39999998, -0.39999998, 0.0633, -0.5, -0.39999998, 0.0633, 0.39999998, -0.5, 0, 0.5, 0.5, 0.1467, 0.5, 0.5, 0, 0.5, 0.5, 0.1467, 0.5, -0.5, 0, 0.5, -0.5, 0.1467, 0.5, 0.39999998, 0.1467, -0.5, 0.39999998, 0.0633, 0.39999998, 0.39999998, 0.0633, -0.5, 0.39999998, 0.0633, 0.39999998, 0.39999998, 0.1467, -0.5, 0.39999998, 0.1467, 0.39999998, 0.39999998, 0.0633, 0.39999998, -0.39999998, 0.1467, 0.39999998, -0.39999998, 0.0633, 0.39999998, -0.39999998, 0.1467, 0.39999998, 0.39999998, 0.0633, 0.39999998, 0.39999998, 0.1467, 0.39999998, 0.39999998, 0.0633, 0.39999998, -0.39999998, 0.0633, -0.5, 0.39999998, 0.0633, -0.5, -0.39999998, 0.0633, -0.5, 0.39999998, 0.0633, 0.39999998, -0.39999998, 0.0633, 0.39999998, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0.1467, 0.5, 0.5, 0.1467, -0.5, 0.5, 0.1467, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.39999998, 0.1467, 0.39999998, -0.5, 0.1467, -0.5, -0.39999998, 0.1467, -0.5, -0.39999998, 0.1467, 0.39999998, -0.5, 0.1467, 0.5, -0.5, 0.1467, -0.5, 0.39999998, 0.1467, 0.39999998, -0.5, 0.1467, 0.5, -0.39999998, 0.1467, 0.39999998, 0.39999998, 0.1467, 0.39999998, 0.5, 0.1467, 0.5, -0.5, 0.1467, 0.5, 0.39999998, 0.1467, -0.5, 0.5, 0.1467, 0.5, 0.39999998, 0.1467, 0.39999998, 0.5, 0.1467, 0.5, 0.39999998, 0.1467, -0.5, 0.5, 0.1467, -0.5, -0.5, 0.1467, -0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0.1467, -0.5, -0.5, 0.1467, 0.5, -0.5, 0.1467, -0.5, -0.39999998, 0.0633, -0.5, -0.39999998, 0.1467, -0.5, -0.5, 0, -0.5, -0.39999998, 0.0633, -0.5, -0.5, 0.1467, -0.5, -0.39999998, 0.0633, -0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0, -0.5, 0.39999998, 0.0633, -0.5, -0.39999998, 0.0633, -0.5, 0.39999998, 0.0633, -0.5, 0.5, 0, -0.5, 0.5, 0.1467, -0.5, 0.39999998, 0.0633, -0.5, 0.5, 0.1467, -0.5, 0.39999998, 0.1467, -0.5, -0.39999998, 0.0633, -0.5, -0.39999998, 0.1467, 0.39999998, -0.39999998, 0.1467, -0.5, -0.39999998, 0.1467, 0.39999998, -0.39999998, 0.0633, -0.5, -0.39999998, 0.0633, 0.39999998, -0.5, 0, 0.5, 0.5, 0.1467, 0.5, 0.5, 0, 0.5, 0.5, 0.1467, 0.5, -0.5, 0, 0.5, -0.5, 0.1467, 0.5, 0.39999998, 0.1467, -0.5, 0.39999998, 0.0633, 0.39999998, 0.39999998, 0.0633, -0.5, 0.39999998, 0.0633, 0.39999998, 0.39999998, 0.1467, -0.5, 0.39999998, 0.1467, 0.39999998, 0.39999998, 0.0633, 0.39999998, -0.39999998, 0.1467, 0.39999998, -0.39999998, 0.0633, 0.39999998, -0.39999998, 0.1467, 0.39999998, 0.39999998, 0.0633, 0.39999998, 0.39999998, 0.1467, 0.39999998, 0.39999998, 0.0633, 0.39999998, -0.39999998, 0.0633, -0.5, 0.39999998, 0.0633, -0.5, -0.39999998, 0.0633, -0.5, 0.39999998, 0.0633, 0.39999998, -0.39999998, 0.0633, 0.39999998)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
+radius = 0.034957007
+
+[node name="Node3D" type="Node3D" unique_id=1383054765]
+
+[node name="straight2" parent="." unique_id=871488194 instance=ExtResource("1_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2116662129]
+environment = SubResource("Environment_02wvc")
+
+[node name="hole-round2" parent="." unique_id=74229217 instance=ExtResource("3_5vw27")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -2)
+visible = false
+
+[node name="end2" parent="." unique_id=1561097105 instance=ExtResource("4_kek77")]
+visible = false
+
+[node name="end3" type="Node3D" parent="." unique_id=2005989647]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="end3" unique_id=1004479888]
+mesh = ExtResource("6_efxa6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="end3/MeshInstance3D" unique_id=1227231064]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="end3/MeshInstance3D/StaticBody3D" unique_id=474344466]
+shape = SubResource("ConcavePolygonShape3D_dg77c")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1684026385]
+transform = Transform3D(1, 0, 0, 0, 0.9143648, 0.4048913, 0, -0.4048913, 0.9143648, 0, 0.68153965, 0.8633008)
+
+[node name="Ball" type="RigidBody3D" parent="." unique_id=207864282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+script = ExtResource("6_dg77c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball" unique_id=1104073929]
+shape = SubResource("SphereShape3D_oc035")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball" unique_id=1950477208]
+mesh = ExtResource("7_272bh")
+
+[node name="Piece" type="StaticBody3D" parent="." unique_id=1043627681]
+script = ExtResource("7_5vw27")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piece" unique_id=1681056321]
+mesh = ExtResource("6_efxa6")
+
+[node name="Piece2" type="StaticBody3D" parent="." unique_id=1641590503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+script = ExtResource("7_5vw27")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piece2" unique_id=858833008]
+mesh = ExtResource("8_4c57u")
+
+[node name="Piece3" type="StaticBody3D" parent="." unique_id=1754842692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+script = ExtResource("7_5vw27")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piece3" unique_id=606446176]
+mesh = ExtResource("9_efxa6")
+
+[node name="Piece4" type="StaticBody3D" parent="." unique_id=247270203]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -3)
+script = ExtResource("7_5vw27")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piece4" unique_id=959135498]
+mesh = ExtResource("10_dg77c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1861630881]
+transform = Transform3D(1, 0, 0, 0, -0.4795209, 0.87753046, 0, -0.87753046, -0.4795209, 0, 0, 0)
+shadow_enabled = true
