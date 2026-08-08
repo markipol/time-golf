@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dimbbbyqpvlq" path="res://piece.gd" id="7_5vw27"]
 [ext_resource type="ArrayMesh" uid="uid://dtq8sfjxkayj2" path="res://kenney_minigolf-kit/Models/OBJ format/ball-red.obj" id="7_272bh"]
 [ext_resource type="ArrayMesh" uid="uid://k5bnpcs7wxyt" path="res://kenney_minigolf-kit/Models/OBJ format/straight.obj" id="8_4c57u"]
+[ext_resource type="Material" uid="uid://bxy38lxnvyo0u" path="res://inspectorarrow.tres" id="8_dg77c"]
 [ext_resource type="ArrayMesh" uid="uid://vxv2tsiei8yw" path="res://kenney_minigolf-kit/Models/OBJ format/castle.obj" id="9_efxa6"]
 [ext_resource type="ArrayMesh" uid="uid://vof1o6tlv2sw" path="res://kenney_minigolf-kit/Models/OBJ format/hole-round.obj" id="10_dg77c"]
 
@@ -27,6 +28,12 @@ data = PackedVector3Array(-0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5,
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
 radius = 0.034957007
+
+[sub_resource type="BoxMesh" id="BoxMesh_02wvc"]
+size = Vector3(0.01, 0.01, 0.1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_02wvc"]
+size = Vector3(0.025, 0.01, 0.01)
 
 [node name="Node3D" type="Node3D" unique_id=1383054765]
 
@@ -56,10 +63,10 @@ mesh = ExtResource("6_efxa6")
 shape = SubResource("ConcavePolygonShape3D_dg77c")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1684026385]
-transform = Transform3D(1, 0, 0, 0, 0.9143648, 0.4048913, 0, -0.4048913, 0.9143648, 0, 0.68153965, 0.8633008)
+transform = Transform3D(1, 0, 0, 0, 0.10653621, 0.9943088, 0, -0.9943088, 0.10653621, 0, 2.6815395, -1.1366992)
 
 [node name="Ball" type="RigidBody3D" parent="." unique_id=207864282]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0, 0.25, 0)
 script = ExtResource("6_dg77c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball" unique_id=1104073929]
@@ -67,6 +74,18 @@ shape = SubResource("SphereShape3D_oc035")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ball" unique_id=1950477208]
 mesh = ExtResource("7_272bh")
+
+[node name="InspectorArrow" type="Node3D" parent="Ball" unique_id=1039711993]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball/InspectorArrow" unique_id=535580599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+mesh = SubResource("BoxMesh_02wvc")
+surface_material_override/0 = ExtResource("8_dg77c")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Ball/InspectorArrow" unique_id=776605492]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.155)
+mesh = SubResource("PrismMesh_02wvc")
+surface_material_override/0 = ExtResource("8_dg77c")
 
 [node name="Piece" type="StaticBody3D" parent="." unique_id=1043627681]
 script = ExtResource("7_5vw27")
@@ -98,3 +117,15 @@ mesh = ExtResource("10_dg77c")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1861630881]
 transform = Transform3D(1, 0, 0, 0, -0.4795209, 0.87753046, 0, -0.87753046, -0.4795209, 0, 0, 0)
 shadow_enabled = true
+
+[node name="ShotArrow" type="Node3D" parent="." unique_id=1968826682]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.25, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ShotArrow" unique_id=266339390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.09996557)
+mesh = SubResource("BoxMesh_02wvc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ShotArrow" unique_id=900870742]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.15462497)
+mesh = SubResource("PrismMesh_02wvc")
