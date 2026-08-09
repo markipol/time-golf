@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b6ugy0nq44gr2"]
+
+[ext_resource type="PackedScene" uid="uid://dlqgmkwekt8tn" path="res://low-poly-golf-ball/source/Golf Ball/Golf Ball/Golf Ball.fbx" id="1_0wkuo"]
+[ext_resource type="Texture2D" uid="uid://etrk6nlb2ldi" path="res://low-poly-golf-ball/source/Golf Ball/Golf Ball/Textures/Golf Ball Normal Map.png" id="2_g0ryd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1oap"]
+normal_enabled = true
+normal_texture = ExtResource("2_g0ryd")
+
+[node name="Golf Ball" unique_id=1954682578 instance=ExtResource("1_0wkuo")]
+
+[node name="Golf Ball" parent="." index="0" unique_id=103120143]
+surface_material_override/0 = SubResource("StandardMaterial3D_y1oap")
