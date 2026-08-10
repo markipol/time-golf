@@ -16,9 +16,10 @@ var max_distance = 0.3
 @export var debug_rays: bool = false
 @export var power_multiplier = 0.25
 @onready var camera: Camera3D = %Camera3D
-var original_offset: Vector3
-var original_global_transform: Transform3D
-
+var camera_offset: Vector3
+var has_grounded_transform := false
+var original_global_transform_grounded: Transform3D
+var grounded = false
 @export var SPEED_THRESHOLD := 0.5
 @export var ANGULAR_THRESHOLD := 0.2
 @export var SETTLE_FRAMES := 20
@@ -40,9 +41,9 @@ var green_ray: MeshInstance3D
 func _ready() -> void:
 	yaw = rad_to_deg(rotation.y)
 	$InspectorArrow.hide()
-	%ShotArrow.show()
-	original_offset = %Camera3D.global_transform.origin - global_transform.origin
-	original_global_transform = global_transform
+	%ShotArrow.hide()
+	camera_offset = %Camera3D.global_transform.origin - global_transform.origin
+	
 	##RAY
 	red_ray = MeshInstance3D.new()
 	green_ray = MeshInstance3D.new()
@@ -83,7 +84,12 @@ func _ready() -> void:
 	stem.material_override = arrow_mat
 	arrow.material_override = arrow_mat
 	
-	
+func is_grounded(state: PhysicsDirectBodyState3D) -> bool:
+	for i in range(state.get_contact_count()):
+		var normal = state.get_contact_local_normal(i)
+		if normal.dot(Vector3.UP) > 0.7:
+			return true
+	return false
 func draw_ray(mesh_instance: MeshInstance3D, from: Vector3, to: Vector3) -> void:
 	var direction := to - from
 	var length := direction.length()
@@ -99,20 +105,30 @@ func draw_ray(mesh_instance: MeshInstance3D, from: Vector3, to: Vector3) -> void
 func take_previous_shots():
 	for shot in previous_shots:
 		var g = ghost_ball_scene.instantiate()
-		g.global_transform = original_global_transform
+		g.global_transform = original_global_transform_grounded
 		
 		%ghost_balls.add_child(g)
 		g.apply_central_impulse(shot)
 func finish_shot():
 	take_previous_shots()
-	global_transform = original_global_transform
+	global_transform = original_global_transform_grounded
 	shot_taken = false
 	settle_counter = 0
 	%ShotArrow.show()
 func _physics_process(_delta):
 	var mouse_pos := get_viewport().get_mouse_position()
-	%Camera3D.global_transform.origin = global_transform.origin + original_offset
-	if shot_taken:
+	%Camera3D.global_transform.origin = global_transform.origin + camera_offset
+	if not original_global_transform_grounded:
+		if grounded:
+			settle_counter += 1
+		else:
+			settle_counter = 0
+		if settle_counter >= SETTLE_FRAMES:
+			%ShotArrow.show()
+			original_global_transform_grounded = global_transform
+			has_grounded_transform = true
+			settle_counter = 0
+	elif shot_taken:
 		var speed = linear_velocity.length()
 		var spin = angular_velocity.length()
 		if speed < SPEED_THRESHOLD and spin < ANGULAR_THRESHOLD:
@@ -251,7 +267,9 @@ func _physics_process(_delta):
 				%ShotArrow.hide()
 
 
-
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	grounded = is_grounded(state)
+	
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
