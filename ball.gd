@@ -17,7 +17,13 @@ var max_distance = 0.3
 @export var power_multiplier = 0.25
 @onready var camera: Camera3D = %Camera3D
 var original_offset: Vector3
-var original_position: Vector3
+var original_global_transform: Transform3D
+
+@export var SPEED_THRESHOLD := 0.5
+@export var ANGULAR_THRESHOLD := 0.2
+@export var SETTLE_FRAMES := 20
+@export var settle_counter = 0
+@export var ghost_ball_scene = preload("res://ghost_ball.tscn")
 
 var col_min = Color.WHITE
 var col_mid = Color(1.0, 0.5, 0.0) # orange
@@ -26,7 +32,7 @@ var arrow_mat: StandardMaterial3D
 var stem: MeshInstance3D
 var arrow: MeshInstance3D
 var shot_taken = false
-
+var previous_shots = []
 
 #RAY
 var red_ray: MeshInstance3D
@@ -36,6 +42,7 @@ func _ready() -> void:
 	$InspectorArrow.hide()
 	%ShotArrow.show()
 	original_offset = %Camera3D.global_transform.origin - global_transform.origin
+	original_global_transform = global_transform
 	##RAY
 	red_ray = MeshInstance3D.new()
 	green_ray = MeshInstance3D.new()
@@ -89,140 +96,159 @@ func draw_ray(mesh_instance: MeshInstance3D, from: Vector3, to: Vector3) -> void
 
 	mesh_instance.look_at(to, Vector3.UP)
 	mesh_instance.rotate_object_local(Vector3.RIGHT, PI / 2.0)
+func take_previous_shots():
+	for shot in previous_shots:
+		var g = ghost_ball_scene.instantiate()
+		g.global_transform = original_global_transform
+		
+		%ghost_balls.add_child(g)
+		g.apply_central_impulse(shot)
+func finish_shot():
+	take_previous_shots()
+	global_transform = original_global_transform
+	shot_taken = false
+	settle_counter = 0
+	%ShotArrow.show()
 func _physics_process(_delta):
 	var mouse_pos := get_viewport().get_mouse_position()
 	%Camera3D.global_transform.origin = global_transform.origin + original_offset
-	#if shot_taken:
-		#var speed = linear_velocity.length()
-		#
-			#
-	#else:
-	
-	
-
-	
-
-	# -------------------------------------------------
-	# RAY FROM CAMERA THROUGH MOUSE
-	# -------------------------------------------------
-
-	var ray_origin := camera.project_ray_origin(mouse_pos)
-	var ray_direction := camera.project_ray_normal(mouse_pos)
-
-	var ray_end := ray_origin + ray_direction * 100.0
-
-
-	# -------------------------------------------------
-	# FIND WHERE THAT RAY HITS THE BALL'S HORIZONTAL PLANE
-	# -------------------------------------------------
-
-	var plane := Plane(Vector3.UP, global_position.y)
-
-	var mouse_world_pos = plane.intersects_ray(
-		ray_origin,
-		ray_direction
-	)
-
-	# Camera -> mouse ray
-	if debug_rays:
-		draw_ray(red_ray, ray_origin, ray_end)
-
-		# Mouse -> ball ray
-		if mouse_world_pos != null:
-			draw_ray(
-				green_ray,
-				mouse_world_pos,
-				global_position
-			)
-
-
-	#print("Mouse: ", mouse_pos)
-	#print("Ray origin: ", ray_origin)
-	#print("Ray direction: ", ray_direction)
-	#print("Mouse world: ", mouse_world_pos)
-	#print("Ball: ", global_position)
-	
-	
-	## --- AIM LEFT/RIGHT ---
-	#if Input.is_action_pressed("ui_left"):
-		#yaw += angle_speed * delta
-		#
-	#if Input.is_action_pressed("ui_right"):
-		#yaw -= angle_speed * delta
-		#
-	#%ShotArrow.rotation.y = deg_to_rad(yaw) + PI
-	#%ShotArrow.rotation.x = 0
-	#%ShotArrow.rotation.z = 0
-	#%ShotArrow.position = position
-	#
-	## Convert yaw to a direction vector on XZ plane
-	#angle = Vector2(
-		#sin(deg_to_rad(yaw)),
-		#cos(deg_to_rad(yaw))
-	#)
-	#if mouse_world_pos != null:
-		##print("Distance: ", global_position.distance_to(mouse_world_pos))
-		#var direction = global_position - mouse_world_pos
-		#direction.y = 0
-#
-		#if direction.length_squared() > 0.001:
-			#direction = direction.normalized()
-#
-			## This is now the ball's aim direction
-			#angle = Vector2(direction.x, direction.z)
-
-	%ShotArrow.rotation.y = atan2(angle.x, angle.y) + PI
-	%ShotArrow.rotation.z = 0
-	%ShotArrow.rotation.x = 0
-	%ShotArrow.position = position
-	## --- POWER CONTROL ---
-	#if Input.is_action_just_pressed("ui_up"):
-		#power += power_speed * delta
-		#print("Power: ", power)
-	#if Input.is_action_just_pressed("ui_down"):
-		#power -= power_speed * delta
-		#print("Power: ", power)
-#
-	#power = clamp(power, min_power, max_power)
-
-	# --- SHOOT ---
-	if mouse_world_pos !=null:
-		var shot_direction = global_position - mouse_world_pos
-		shot_direction.y = 0
-		if shot_direction.length_squared() > 0.001:
-			shot_direction = shot_direction.normalized()
-			angle = Vector2(shot_direction.x, shot_direction.z)
-		var distance  = global_position.distance_to(mouse_world_pos)
-		print("Unclamped distance" + str(distance))
-		distance = clamp(distance,min_distance,max_distance)
-		print("Clamped distance" + str(distance))
-		var percent_power_meter = (distance - min_distance) / (max_distance - min_distance)
-		print("Percent power meter" + str(percent_power_meter))
-		var clamped_power_meter = clamp(percent_power_meter, 0.2, 1)
-		print("Clamped power meter" + str(percent_power_meter))
-		%ShotArrow.scale = Vector3(clamped_power_meter,clamped_power_meter,clamped_power_meter)
-		var t = clamp((clamped_power_meter - 0.2) / (1.0 - 0.2), 0.0, 1.0)
-		var col: Color
-		if t < 0.5:
-			col = col_min.lerp(col_mid, t * 2.0)
+	if shot_taken:
+		var speed = linear_velocity.length()
+		var spin = angular_velocity.length()
+		if speed < SPEED_THRESHOLD and spin < ANGULAR_THRESHOLD:
+			settle_counter += 1
 		else:
-			col = col_mid.lerp(col_max, (t - 0.5) * 2.0)
+			settle_counter = 0
+		if settle_counter >= SETTLE_FRAMES:
+			finish_shot()
+	else:
+	
 		
-		
-		arrow_mat.albedo_color = col
-		print("PM", power_multiplier)
-		power = clamped_power_meter * power_multiplier
-		#print("Power: ", str(power))
-		
-		if Input.is_action_just_pressed("shoot"):
-			print("SHOT!")
-			print("Power: ", power)
 
-			# Apply force in the aimed direction
-			var force := Vector3(angle.x, 0, angle.y) * power
-			apply_central_impulse(force)
-			shot_taken = true
-			%ShotArrow.hide()
+		
+
+		# -------------------------------------------------
+		# RAY FROM CAMERA THROUGH MOUSE
+		# -------------------------------------------------
+
+		var ray_origin := camera.project_ray_origin(mouse_pos)
+		var ray_direction := camera.project_ray_normal(mouse_pos)
+
+		var ray_end := ray_origin + ray_direction * 100.0
+
+
+		# -------------------------------------------------
+		# FIND WHERE THAT RAY HITS THE BALL'S HORIZONTAL PLANE
+		# -------------------------------------------------
+
+		var plane := Plane(Vector3.UP, global_position.y)
+
+		var mouse_world_pos = plane.intersects_ray(
+			ray_origin,
+			ray_direction
+		)
+
+		# Camera -> mouse ray
+		if debug_rays:
+			draw_ray(red_ray, ray_origin, ray_end)
+
+			# Mouse -> ball ray
+			if mouse_world_pos != null:
+				draw_ray(
+					green_ray,
+					mouse_world_pos,
+					global_position
+				)
+
+
+		#print("Mouse: ", mouse_pos)
+		#print("Ray origin: ", ray_origin)
+		#print("Ray direction: ", ray_direction)
+		#print("Mouse world: ", mouse_world_pos)
+		#print("Ball: ", global_position)
+		
+		
+		## --- AIM LEFT/RIGHT ---
+		#if Input.is_action_pressed("ui_left"):
+			#yaw += angle_speed * delta
+			#
+		#if Input.is_action_pressed("ui_right"):
+			#yaw -= angle_speed * delta
+			#
+		#%ShotArrow.rotation.y = deg_to_rad(yaw) + PI
+		#%ShotArrow.rotation.x = 0
+		#%ShotArrow.rotation.z = 0
+		#%ShotArrow.position = position
+		#
+		## Convert yaw to a direction vector on XZ plane
+		#angle = Vector2(
+			#sin(deg_to_rad(yaw)),
+			#cos(deg_to_rad(yaw))
+		#)
+		#if mouse_world_pos != null:
+			##print("Distance: ", global_position.distance_to(mouse_world_pos))
+			#var direction = global_position - mouse_world_pos
+			#direction.y = 0
+	#
+			#if direction.length_squared() > 0.001:
+				#direction = direction.normalized()
+	#
+				## This is now the ball's aim direction
+				#angle = Vector2(direction.x, direction.z)
+
+		%ShotArrow.rotation.y = atan2(angle.x, angle.y) + PI
+		%ShotArrow.rotation.z = 0
+		%ShotArrow.rotation.x = 0
+		%ShotArrow.position = position
+		## --- POWER CONTROL ---
+		#if Input.is_action_just_pressed("ui_up"):
+			#power += power_speed * delta
+			#print("Power: ", power)
+		#if Input.is_action_just_pressed("ui_down"):
+			#power -= power_speed * delta
+			#print("Power: ", power)
+	#
+		#power = clamp(power, min_power, max_power)
+
+		# --- SHOOT ---
+		if mouse_world_pos !=null:
+			var shot_direction = global_position - mouse_world_pos
+			shot_direction.y = 0
+			if shot_direction.length_squared() > 0.001:
+				shot_direction = shot_direction.normalized()
+				angle = Vector2(shot_direction.x, shot_direction.z)
+			var distance  = global_position.distance_to(mouse_world_pos)
+			print("Unclamped distance" + str(distance))
+			distance = clamp(distance,min_distance,max_distance)
+			print("Clamped distance" + str(distance))
+			var percent_power_meter = (distance - min_distance) / (max_distance - min_distance)
+			print("Percent power meter" + str(percent_power_meter))
+			var clamped_power_meter = clamp(percent_power_meter, 0.2, 1)
+			print("Clamped power meter" + str(percent_power_meter))
+			%ShotArrow.scale = Vector3(clamped_power_meter,clamped_power_meter,clamped_power_meter)
+			var t = clamp((clamped_power_meter - 0.2) / (1.0 - 0.2), 0.0, 1.0)
+			var col: Color
+			if t < 0.5:
+				col = col_min.lerp(col_mid, t * 2.0)
+			else:
+				col = col_mid.lerp(col_max, (t - 0.5) * 2.0)
+			
+			
+			arrow_mat.albedo_color = col
+			print("PM", power_multiplier)
+			power = clamped_power_meter * power_multiplier
+			#print("Power: ", str(power))
+			
+			if Input.is_action_just_pressed("shoot"):
+				print("SHOT!")
+				print("Power: ", power)
+
+				# Apply force in the aimed direction
+				var force := Vector3(angle.x, 0, angle.y) * power
+				apply_central_impulse(force)
+				previous_shots.append(force)
+				shot_taken = true
+				%ShotArrow.hide()
 
 
 
