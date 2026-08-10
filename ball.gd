@@ -213,9 +213,7 @@ func _physics_process(delta):
 			apply_central_impulse(force)
 
 
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	print("i knew you could do it")
-	label.show()
+
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
