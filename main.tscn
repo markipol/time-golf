@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bkk682wpaw181"]
 
+[ext_resource type="Script" uid="uid://c71o3svh73ojt" path="res://main.gd" id="1_4c57u"]
 [ext_resource type="PackedScene" uid="uid://7u10ighvfqc4" path="res://kenney_minigolf-kit/Models/GLB format/straight.glb" id="1_7mycd"]
 [ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="2_272bh"]
 [ext_resource type="PackedScene" uid="uid://dndrtyreluq5w" path="res://kenney_minigolf-kit/Models/GLB format/hole-round.glb" id="3_5vw27"]
@@ -93,6 +94,7 @@ size = Vector3(0.25, 0.25, 0.1)
 size = Vector3(0.25, 0.25, 0.1)
 
 [node name="Node3D" type="Node3D" unique_id=1383054765]
+script = ExtResource("1_4c57u")
 
 [node name="straight2" parent="." unique_id=871488194 instance=ExtResource("1_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
