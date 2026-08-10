@@ -17,6 +17,7 @@ var max_distance = 0.3
 @export var power_multiplier = 0.25
 @onready var camera: Camera3D = %Camera3D
 var original_offset: Vector3
+var original_position: Vector3
 
 var col_min = Color.WHITE
 var col_mid = Color(1.0, 0.5, 0.0) # orange
@@ -24,6 +25,7 @@ var col_max = Color.RED
 var arrow_mat: StandardMaterial3D
 var stem: MeshInstance3D
 var arrow: MeshInstance3D
+var shot_taken = false
 
 
 #RAY
@@ -87,9 +89,16 @@ func draw_ray(mesh_instance: MeshInstance3D, from: Vector3, to: Vector3) -> void
 
 	mesh_instance.look_at(to, Vector3.UP)
 	mesh_instance.rotate_object_local(Vector3.RIGHT, PI / 2.0)
-func _physics_process(delta):
-	
+func _physics_process(_delta):
 	var mouse_pos := get_viewport().get_mouse_position()
+	%Camera3D.global_transform.origin = global_transform.origin + original_offset
+	#if shot_taken:
+		#var speed = linear_velocity.length()
+		#
+			#
+	#else:
+	
+	
 
 	
 
@@ -133,7 +142,7 @@ func _physics_process(delta):
 	#print("Mouse world: ", mouse_world_pos)
 	#print("Ball: ", global_position)
 	
-	%Camera3D.global_transform.origin = global_transform.origin + original_offset
+	
 	## --- AIM LEFT/RIGHT ---
 	#if Input.is_action_pressed("ui_left"):
 		#yaw += angle_speed * delta
@@ -201,7 +210,7 @@ func _physics_process(delta):
 		
 		arrow_mat.albedo_color = col
 		
-		var power: float = clamped_power_meter * power_multiplier
+		power = clamped_power_meter * power_multiplier
 		#print("Power: ", str(power))
 		
 		if Input.is_action_just_pressed("shoot"):
@@ -211,6 +220,8 @@ func _physics_process(delta):
 			# Apply force in the aimed direction
 			var force := Vector3(angle.x, 0, angle.y) * power
 			apply_central_impulse(force)
+			shot_taken = true
+			%ShotArrow.hide()
 
 
 

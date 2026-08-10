@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="6_dg77c"]
 [ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="7_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://cmhy46iimgqa1" path="res://course1-real.glb" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://b2pnb52imtfav" path="res://button.gd" id="8_kek77"]
+[ext_resource type="Script" uid="uid://cyl3urqpwbk33" path="res://gate.gd" id="9_kek77"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_m11on"]
 panorama = ExtResource("2_272bh")
@@ -67,6 +69,29 @@ bounce = 1.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_igw2x"]
 size = Vector3(0.15, 0.15, 0.15)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arix4"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_igw2x"]
+material = SubResource("StandardMaterial3D_arix4")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iyxl4"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_arix4"]
+size = Vector3(0.16, 0.16, 0.16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
+albedo_color = Color(0.5087912, 0.54734945, 0.5135662, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_efxa6"]
+material = SubResource("StandardMaterial3D_4c57u")
+size = Vector3(0.25, 0.25, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dg77c"]
+size = Vector3(0.25, 0.25, 0.1)
+
 [node name="Node3D" type="Node3D" unique_id=1383054765]
 
 [node name="straight2" parent="." unique_id=871488194 instance=ExtResource("1_7mycd")]
@@ -109,6 +134,8 @@ linear_damp = 0.5
 angular_damp = 0.5
 script = ExtResource("6_dg77c")
 label = NodePath("../CanvasLayer/Node2D/Label")
+debug_rays = null
+power_multiplier = null
 
 [node name="Golf Ball2" parent="Ball" unique_id=1954682578 instance=ExtResource("7_ycdy4")]
 
@@ -157,6 +184,44 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=423218514]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23144953, -0.024865683, 0.12996054)
 shape = SubResource("BoxShape3D_igw2x")
+
+[node name="button" type="Node3D" parent="." unique_id=869062564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12886566, -1.6961315)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="button" unique_id=197112086]
+mesh = SubResource("BoxMesh_igw2x")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="button/MeshInstance3D" unique_id=626875833]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/MeshInstance3D/StaticBody3D" unique_id=886796466]
+shape = SubResource("BoxShape3D_iyxl4")
+
+[node name="Area3D" type="Area3D" parent="button" unique_id=1106603482 node_paths=PackedStringArray("target")]
+collision_mask = 2
+script = ExtResource("8_kek77")
+target = NodePath("../../gate")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area3D" unique_id=1419936764]
+shape = SubResource("BoxShape3D_arix4")
+
+[node name="gate" type="Node3D" parent="." unique_id=1216292546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23198378, 0.0797513, -1.6961315)
+script = ExtResource("9_kek77")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gate" unique_id=1712509975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015527338, 0, 0)
+mesh = SubResource("BoxMesh_efxa6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="gate/MeshInstance3D" unique_id=1791984622]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gate/MeshInstance3D/StaticBody3D" unique_id=2030874466]
+shape = SubResource("BoxShape3D_dg77c")
+
+[node name="Area3D" type="Area3D" parent="gate" unique_id=776751726]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gate/Area3D" unique_id=2119137252]
+shape = SubResource("BoxShape3D_arix4")
 
 [connection signal="body_entered" from="Area3D" to="Ball" method="_on_area_3d_body_entered"]
 
