@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="6_dg77c"]
 [ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="7_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://cmhy46iimgqa1" path="res://course1-real.glb" id="8_5vw27"]
-[ext_resource type="Material" uid="uid://bxy38lxnvyo0u" path="res://inspectorarrow.tres" id="8_dg77c"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_m11on"]
 panorama = ExtResource("2_272bh")
@@ -19,13 +18,41 @@ sky_material = SubResource("PanoramaSkyMaterial_m11on")
 background_mode = 2
 sky = SubResource("Sky_4xkj2")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_py581"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_02wvc"]
+material = SubResource("StandardMaterial3D_py581")
 size = Vector3(0.03, 0.03, 0.3)
 
+[sub_resource type="Shader" id="Shader_5vw27"]
+code = "shader_type spatial;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+render_priority = 0
+shader = SubResource("Shader_5vw27")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+
 [sub_resource type="PrismMesh" id="PrismMesh_02wvc"]
+material = SubResource("StandardMaterial3D_5vw27")
 size = Vector3(0.05, 0.03, 0.03)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4c57u"]
+bounce = 0.75
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
 radius = 0.021273103
@@ -55,23 +82,25 @@ visible = false
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1684026385]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.7830422, 0.6219686, 0, -0.6219686, 0.7830422, 6.8, 0.7458775, 0.6431067)
+transform = Transform3D(1, 0, 0, 0, 0.7830422, 0.6219686, 0, -0.6219686, 0.7830422, 0.39503574, 0.7458775, 0.6431067)
 
 [node name="ShotArrow" type="Node3D" parent="." unique_id=1968826682]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 6.8, 0.31389987, -0.024847567)
+transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 0.39503574, 0.31389987, -0.024847567)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ShotArrow" unique_id=266339390]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.18911491)
 mesh = SubResource("BoxMesh_02wvc")
+surface_material_override/0 = SubResource("ShaderMaterial_5vw27")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="ShotArrow" unique_id=900870742]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.35399345)
 mesh = SubResource("PrismMesh_02wvc")
 
 [node name="Ball" type="RigidBody3D" parent="." unique_id=207864282 node_paths=PackedStringArray("label")]
-transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 6.8, 0.31389987, -0.024847567)
+transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0.39503574, 0.31389987, -0.024847567)
 collision_layer = 3
+mass = 0.045
 physics_material_override = SubResource("PhysicsMaterial_4c57u")
 linear_damp = 0.5
 angular_damp = 0.5
@@ -88,24 +117,22 @@ shape = SubResource("SphereShape3D_oc035")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ball/InspectorArrow" unique_id=535580599]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 mesh = SubResource("BoxMesh_02wvc")
-surface_material_override/0 = ExtResource("8_dg77c")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Ball/InspectorArrow" unique_id=776605492]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.155)
 mesh = SubResource("PrismMesh_02wvc")
-surface_material_override/0 = ExtResource("8_dg77c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1861630881]
 transform = Transform3D(1, 0, 0, 0, -0.4795209, 0.87753046, 0, -0.87753046, -0.4795209, 0, 0, 0)
 shadow_enabled = true
 
 [node name="course1-real" parent="." unique_id=1838724994 instance=ExtResource("8_5vw27")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.783049, 0, -2.867461)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.21816492, 0, -2.867461)
 
-[node name="StaticBody3D" parent="course1-real/floor" parent_id_path=PackedInt32Array(1838724994, 1075548939) index="0" unique_id=570318129]
+[node name="StaticBody3D" parent="course1-real/floor" parent_id_path=PackedInt32Array(1838724994, 2084520073) index="0" unique_id=723575291]
 physics_material_override = SubResource("PhysicsMaterial_kek77")
 
-[node name="StaticBody3D" parent="course1-real/walls" parent_id_path=PackedInt32Array(1838724994, 654017013) index="0" unique_id=1830394558]
+[node name="StaticBody3D" parent="course1-real/walls" parent_id_path=PackedInt32Array(1838724994, 286912501) index="0" unique_id=232551703]
 physics_material_override = SubResource("PhysicsMaterial_5vw27")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=76987635]

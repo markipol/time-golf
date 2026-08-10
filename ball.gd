@@ -14,8 +14,18 @@ var power_speed := 50.0    # units per second
 var min_distance = 0.08
 var max_distance = 0.3
 @export var debug_rays: bool = false
+@export var power_multiplier = 0.25
 @onready var camera: Camera3D = %Camera3D
 var original_offset: Vector3
+
+var col_min = Color.WHITE
+var col_mid = Color(1.0, 0.5, 0.0) # orange
+var col_max = Color.RED
+var arrow_mat: StandardMaterial3D
+var stem: MeshInstance3D
+var arrow: MeshInstance3D
+
+
 #RAY
 var red_ray: MeshInstance3D
 var green_ray: MeshInstance3D
@@ -57,6 +67,13 @@ func _ready() -> void:
 	if not debug_rays:
 		red_ray.hide()
 		green_ray.hide()
+	arrow_mat = StandardMaterial3D.new()
+	stem = %ShotArrow.get_node("MeshInstance3D")
+	arrow = %ShotArrow.get_node("MeshInstance3D2")
+	
+	stem.material_override = arrow_mat
+	arrow.material_override = arrow_mat
+	
 	
 func draw_ray(mesh_instance: MeshInstance3D, from: Vector3, to: Vector3) -> void:
 	var direction := to - from
@@ -174,7 +191,17 @@ func _physics_process(delta):
 		#print("Percent power meter" + str(percent_power_meter))
 		var clamped_power_meter = clamp(percent_power_meter, 0.2, 1)
 		%ShotArrow.scale = Vector3(clamped_power_meter,clamped_power_meter,clamped_power_meter)
-		var power: float = clamped_power_meter * 5
+		var t = clamp((clamped_power_meter - 0.2) / (1.0 - 0.2), 0.0, 1.0)
+		var col: Color
+		if t < 0.5:
+			col = col_min.lerp(col_mid, t * 2.0)
+		else:
+			col = col_mid.lerp(col_max, (t - 0.5) * 2.0)
+		
+		
+		arrow_mat.albedo_color = col
+		
+		var power: float = clamped_power_meter * power_multiplier
 		#print("Power: ", str(power))
 		
 		if Input.is_action_just_pressed("shoot"):
