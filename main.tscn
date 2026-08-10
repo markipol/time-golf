@@ -134,8 +134,6 @@ linear_damp = 0.5
 angular_damp = 0.5
 script = ExtResource("6_dg77c")
 label = NodePath("../CanvasLayer/Node2D/Label")
-debug_rays = null
-power_multiplier = null
 
 [node name="Golf Ball2" parent="Ball" unique_id=1954682578 instance=ExtResource("7_ycdy4")]
 
