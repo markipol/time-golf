@@ -1,20 +1,18 @@
 [gd_scene format=3 uid="uid://ca217to82tydo"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://wn3f585ardup" path="res://ball_physics_mat.tres" id="1_dfh6f"]
 [ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="1_gq6gl"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4c57u"]
-bounce = 0.75
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
 radius = 0.021273103
 
 [node name="GhostBall" type="RigidBody3D" unique_id=659006327]
 transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0, 0, 0)
-collision_layer = 3
+collision_layer = 2
 mass = 0.045
-physics_material_override = SubResource("PhysicsMaterial_4c57u")
-linear_damp = 0.5
-angular_damp = 0.5
+physics_material_override = ExtResource("1_dfh6f")
+linear_damp = 0.05
+angular_damp = 0.05
 
 [node name="Golf Ball2" parent="." unique_id=1954682578 instance=ExtResource("1_gq6gl")]
 

@@ -110,6 +110,8 @@ func take_previous_shots():
 		%ghost_balls.add_child(g)
 		g.apply_central_impulse(shot)
 func finish_shot():
+	for child in %ghost_balls.get_children():
+		child.queue_free()
 	take_previous_shots()
 	global_transform = original_global_transform_grounded
 	shot_taken = false
@@ -234,13 +236,13 @@ func _physics_process(_delta):
 				shot_direction = shot_direction.normalized()
 				angle = Vector2(shot_direction.x, shot_direction.z)
 			var distance  = global_position.distance_to(mouse_world_pos)
-			print("Unclamped distance" + str(distance))
+			#print("Unclamped distance" + str(distance))
 			distance = clamp(distance,min_distance,max_distance)
-			print("Clamped distance" + str(distance))
+			#print("Clamped distance" + str(distance))
 			var percent_power_meter = (distance - min_distance) / (max_distance - min_distance)
-			print("Percent power meter" + str(percent_power_meter))
+			#print("Percent power meter" + str(percent_power_meter))
 			var clamped_power_meter = clamp(percent_power_meter, 0.2, 1)
-			print("Clamped power meter" + str(percent_power_meter))
+			#print("Clamped power meter" + str(percent_power_meter))
 			%ShotArrow.scale = Vector3(clamped_power_meter,clamped_power_meter,clamped_power_meter)
 			var t = clamp((clamped_power_meter - 0.2) / (1.0 - 0.2), 0.0, 1.0)
 			var col: Color
@@ -251,13 +253,13 @@ func _physics_process(_delta):
 			
 			
 			arrow_mat.albedo_color = col
-			print("PM", power_multiplier)
+			#print("PM", power_multiplier)
 			power = clamped_power_meter * power_multiplier
 			#print("Power: ", str(power))
 			
 			if Input.is_action_just_pressed("shoot"):
-				print("SHOT!")
-				print("Power: ", power)
+				#print("SHOT!")
+				#print("Power: ", power)
 
 				# Apply force in the aimed direction
 				var force := Vector3(angle.x, 0, angle.y) * power
