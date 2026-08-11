@@ -24,6 +24,15 @@ window/stretch/aspect="expand"
 
 import/blender/enabled=false
 
+[importer_defaults]
+
+scene={
+&"meshes/force_disable_compression": true
+}
+MeshLibrary={
+&"meshes/force_disable_compression": true
+}
+
 [input]
 
 shoot={
@@ -38,4 +47,5 @@ shoot={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
