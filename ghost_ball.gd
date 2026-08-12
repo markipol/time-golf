@@ -1,0 +1,24 @@
+extends RigidBody3D
+
+signal red_button_hit
+signal blue_button_hit
+signal purple_button_hit
+signal green_button_hit
+
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	
+	for i in state.get_contact_count():
+		var body = state.get_contact_collider_object(i)
+
+		if body and body.is_in_group("buttons"):
+			var button_name = body.name
+			print("Hit ", button_name)
+			match button_name:
+				"red_button":
+					red_button_hit.emit()
+				"blue_button":
+					blue_button_hit.emit()
+				"purple_button":
+					purple_button_hit.emit()
+				"green_button":
+					green_button_hit.emit()

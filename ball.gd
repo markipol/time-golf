@@ -1,11 +1,16 @@
 extends RigidBody3D
 
+signal red_button_hit
+signal blue_button_hit
+signal purple_button_hit
+signal green_button_hit
+
 var angle := Vector2(0, 1)
 var yaw := 0.0             # degrees
 var power := 0.0
 var max_power := 100.0
 var min_power := 0.0
-@export var label: Label
+var label: Label
 var is_dragging := false
 var drag_vector := Vector2.ZERO
 var start_mouse_pos := Vector2.ZERO
@@ -39,6 +44,7 @@ var previous_shots = []
 var red_ray: MeshInstance3D
 var green_ray: MeshInstance3D
 func _ready() -> void:
+	label = %WinHoleLabel
 	yaw = rad_to_deg(rotation.y)
 	$InspectorArrow.hide()
 	%ShotArrow.hide()
@@ -102,12 +108,22 @@ func draw_ray(mesh_instance: MeshInstance3D, from: Vector3, to: Vector3) -> void
 
 	mesh_instance.look_at(to, Vector3.UP)
 	mesh_instance.rotate_object_local(Vector3.RIGHT, PI / 2.0)
+func copy_button_signal_connections(source: Node, target: Node):
+	for signal_name in [
+		"red_button_hit",
+		"blue_button_hit",
+		"purple_button_hit",
+		"green_button_hit"
+	]:
+		for connection in source.get_signal_connection_list(signal_name):
+			target.connect(signal_name, connection.callable)
 func take_previous_shots():
 	for shot in previous_shots:
 		var g = ghost_ball_scene.instantiate()
 		g.global_transform = original_global_transform_grounded
 		
 		%ghost_balls.add_child(g)
+		copy_button_signal_connections(self, g)
 		g.apply_central_impulse(shot)
 func finish_shot():
 	for child in %ghost_balls.get_children():
@@ -271,7 +287,22 @@ func _physics_process(_delta):
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	grounded = is_grounded(state)
-	
+	for i in state.get_contact_count():
+		var body = state.get_contact_collider_object(i)
+
+		if body and body.is_in_group("buttons"):
+			var button_name = body.name
+			print("Hit ", button_name)
+			match button_name:
+				"red_button":
+					red_button_hit.emit()
+				"blue_button":
+					blue_button_hit.emit()
+				"purple_button":
+					purple_button_hit.emit()
+				"green_button":
+					green_button_hit.emit()
+				
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cuk4ibrlqyac4"
-path="res://.godot/imported/hole-square.fbx-a667577236903d0a31be29d7827cfb05.scn"
+uid="uid://cgawp77bj2qxe"
+path="res://.godot/imported/end1.fbx-59633b0582e8566b55b8ffb82fc3431c.scn"
 
 [deps]
 
-source_file="res://kenney_minigolf-kit/Models/FBX format/hole-square.fbx"
-dest_files=["res://.godot/imported/hole-square.fbx-a667577236903d0a31be29d7827cfb05.scn"]
+source_file="res://kenney_minigolf-kit/Models/FBX format/end1.fbx"
+dest_files=["res://.godot/imported/end1.fbx-59633b0582e8566b55b8ffb82fc3431c.scn"]
 
 [params]
 
@@ -28,7 +28,7 @@ meshes/generate_lods=true
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
-meshes/force_disable_compression=false
+meshes/force_disable_compression=true
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30

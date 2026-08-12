@@ -1,3 +1,4 @@
+# SCRIPT NOT IN USE, IT SUCKS.
 extends Area3D
 @export var target: Node
 @export var method_name: String = "activate"
