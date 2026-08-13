@@ -3,7 +3,9 @@ extends Node3D
 @export var rear_flap_AP: AnimationPlayer
 @export var fake_ball_AP: AnimationPlayer
 @export var fake_ball: Node3D
-
+var locked := false
+var phase2_delay := 0.0
+var phase2_anim_time := 0.0
 var elapsed := 0.0
 var phase1 := false
 var phase1done:= false
@@ -18,7 +20,10 @@ var hit_ball: Node3D
 	#cabin_raycast.enabled = true
 	#fake_ball.add_child(cabin_raycast)
 func ball_hit_entry(ball: RigidBody3D):
+	if locked:
+		return
 	if not phase1:
+		locked = true
 		front_flap_AP.play("fake-ballAction")
 		rear_flap_AP.play("front-flapAction_001")
 		fake_ball_AP.play("fake-ballAction")
@@ -34,6 +39,7 @@ func checkForCabin():
 			var collider = cabin_raycast.get_collider()
 			if collider.is_in_group("cabins"):
 				print("Hit cabin: ", collider.name)
+				phase2start()
 func detect_cabin():
 	cabin_raycast.force_raycast_update()
 	if cabin_raycast.is_colliding():
@@ -43,10 +49,28 @@ func detect_cabin():
 	return null
 func phase2start():
 	phase2 = true
+	phase2_delay = 0.0
+	phase2_anim_time = 0.5
+	
+func reset_all():
+	front_flap_AP.stop()
+	rear_flap_AP.stop()
+	fake_ball_AP.stop()
 
+	front_flap_AP.seek(0.0, true)
+	rear_flap_AP.seek(0.0, true)
+	fake_ball_AP.seek(0.0, true)
+
+	fake_ball.hide()
+
+	phase1 = false
+	phase1done = false
+	phase2 = false
+	locked = false
 func _process(delta):
 	if phase1:
 		hit_ball.global_transform = fake_ball.global_transform
+		
 		elapsed += delta
 		if elapsed >= 1.0 and not phase2:
 			if not phase1done:
@@ -59,9 +83,16 @@ func _process(delta):
 				print("Ball reached cabin: " + cabin.name)
 				phase2start()
 		elif phase2:
-			front_flap_AP.play("fake-ballAction")
-			rear_flap_AP.play("front-flapAction_001")
-			fake_ball_AP.play("fake-ballAction")
-			phase1 = false
-			phase2 = false
+			if phase2_delay > 0.0:
+				phase2_delay -= delta
+				return
+		# Then play phase2 animations
+			if phase2_anim_time > 0.0:
+				front_flap_AP.play("fake-ballAction")
+				rear_flap_AP.play("front-flapAction_001")
+				fake_ball_AP.play("fake-ballAction")
+
+				phase2_anim_time -= delta
+				return
+			reset_all()
 			

@@ -108,7 +108,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qvyyj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_02wvc"]
-size = Vector3(0.12478447, 0.17053223, 0.091552734)
+size = Vector3(0.10430527, 0.17764282, 0.091552734)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g6nka"]
 size = Vector3(0.12916565, 0.15673828, 0.09637451)
@@ -118,7 +118,7 @@ node_b = NodePath("cabin3")
 params/bias = 0.13
 
 [node name="cabin3" type="RigidBody3D" parent="." unique_id=2036312370]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21488589, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14330271, 0)
 collision_layer = 0
 collision_mask = 0
 
@@ -136,7 +136,7 @@ mesh = SubResource("ArrayMesh_ppv7l")
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cabin3/cabincapture" unique_id=83420792]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.060275078, -0.03277588, 0.00061035156)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049058914, -1.5258789e-05, 0.00061035156)
 shape = SubResource("BoxShape3D_02wvc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cabin3" unique_id=30404198]
