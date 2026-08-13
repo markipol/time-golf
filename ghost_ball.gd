@@ -1,9 +1,9 @@
 extends RigidBody3D
 
-signal red_button_hit
-signal blue_button_hit
-signal purple_button_hit
-signal green_button_hit
+signal red_button_hit(ball)
+signal blue_button_hit(ball)
+signal purple_button_hit(ball)
+signal green_button_hit(ball)
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	
@@ -15,10 +15,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			print("Hit ", button_name)
 			match button_name:
 				"red_button":
-					red_button_hit.emit()
+					red_button_hit.emit(self)
 				"blue_button":
-					blue_button_hit.emit()
+					blue_button_hit.emit(self)
 				"purple_button":
-					purple_button_hit.emit()
+					purple_button_hit.emit(self)
 				"green_button":
-					green_button_hit.emit()
+					green_button_hit.emit(self)

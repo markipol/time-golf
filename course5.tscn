@@ -183,6 +183,7 @@ shape = SubResource("BoxShape3D_iyxl4")
 
 [node name="blue_button" type="Node3D" parent="." unique_id=1732396470 groups=["buttons"]]
 transform = Transform3D(0.38325226, 0, 0, 0, 0.38325226, 0, 0, 0, 0.38325226, 0.00057448447, 0.10792561, -1.4188545)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="blue_button" unique_id=687576037]
 mesh = SubResource("BoxMesh_igw2x")
@@ -233,17 +234,21 @@ node_a = NodePath("../wheel2")
 
 [node name="supports2" parent="." unique_id=428079199 instance=ExtResource("12_sk34a")]
 
-[node name="animationcontroller" type="Node3D" parent="." unique_id=671400163 node_paths=PackedStringArray("front_flap_AP", "rear_flap_AP", "fake_ball_AP")]
+[node name="animationcontroller" type="Node3D" parent="." unique_id=671400163 node_paths=PackedStringArray("front_flap_AP", "rear_flap_AP", "fake_ball_AP", "fake_ball")]
 script = ExtResource("17_ke7fs")
 front_flap_AP = NodePath("../frontflap/AnimationPlayer")
 rear_flap_AP = NodePath("../rearflap/AnimationPlayer")
 fake_ball_AP = NodePath("../fakeball/AnimationPlayer")
+fake_ball = NodePath("../fakeball/fake-ball")
 
 [node name="frontflap" parent="." unique_id=246966143 instance=ExtResource("18_inl6m")]
 
 [node name="rearflap" parent="." unique_id=1742093823 instance=ExtResource("19_s5ai3")]
 
 [node name="fakeball" parent="." unique_id=2109696454 instance=ExtResource("20_x803h")]
+
+[node name="fake-ball" parent="fakeball" index="0" unique_id=1759347564]
+visible = false
 
 [connection signal="blue_button_hit" from="BallController/Ball" to="animationcontroller" method="ball_hit_entry"]
 [connection signal="body_entered" from="hole" to="BallController/Ball" method="_on_area_3d_body_entered"]

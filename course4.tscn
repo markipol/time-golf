@@ -1,10 +1,7 @@
 [gd_scene format=3 uid="uid://c70qepbahxka1"]
 
 [ext_resource type="Script" uid="uid://c71o3svh73ojt" path="res://main.gd" id="1_hcleu"]
-[ext_resource type="PackedScene" uid="uid://7u10ighvfqc4" path="res://kenney_minigolf-kit/Models/GLB format/straight.glb" id="2_d2lrx"]
 [ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="2_e1onv"]
-[ext_resource type="PackedScene" uid="uid://dndrtyreluq5w" path="res://kenney_minigolf-kit/Models/GLB format/hole-round.glb" id="3_koqv2"]
-[ext_resource type="PackedScene" uid="uid://dh3scxi7nciy6" path="res://kenney_minigolf-kit/Models/GLB format/end.glb" id="4_w80oy"]
 [ext_resource type="PhysicsMaterial" uid="uid://wn3f585ardup" path="res://ball_physics_mat.tres" id="5_bls8w"]
 [ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="6_d2lrx"]
 [ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="6_uqoqs"]
@@ -166,17 +163,6 @@ _data = {
 
 [node name="Node3D" type="Node3D" unique_id=1383054765]
 script = ExtResource("1_hcleu")
-
-[node name="straight2" parent="." unique_id=871488194 instance=ExtResource("2_d2lrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-visible = false
-
-[node name="hole-round2" parent="." unique_id=74229217 instance=ExtResource("3_koqv2")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -2)
-visible = false
-
-[node name="end2" parent="." unique_id=1561097105 instance=ExtResource("4_w80oy")]
-visible = false
 
 [node name="BallController" type="Node3D" parent="." unique_id=1544432714]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10539551, -1.1028721)
@@ -358,3 +344,4 @@ libraries/ = SubResource("AnimationLibrary_j0s0r")
 [editable path="course4"]
 [editable path="wheel2"]
 [editable path="wheel2/cabin_group"]
+[editable path="Launcher/BallStart/FakeBall/fakeball"]

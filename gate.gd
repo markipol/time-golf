@@ -1,6 +1,6 @@
 extends Node3D
 
-func activate():
+func activate(ball: RigidBody3D):
 	var tween = create_tween()
 	tween.tween_property(self, "transform:origin:y", transform.origin.y + 0.3, 1.0)
 # Called when the node enters the scene tree for the first time.

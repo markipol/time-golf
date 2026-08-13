@@ -1,9 +1,9 @@
 extends RigidBody3D
 
-signal red_button_hit
-signal blue_button_hit
-signal purple_button_hit
-signal green_button_hit
+signal red_button_hit(ball)
+signal blue_button_hit(ball)
+signal purple_button_hit(ball)
+signal green_button_hit(ball)
 
 var angle := Vector2(0, 1)
 var yaw := 0.0             # degrees
@@ -39,7 +39,7 @@ var stem: MeshInstance3D
 var arrow: MeshInstance3D
 var shot_taken = false
 var previous_shots = []
-
+var currently_in_motion_override = false
 #RAY
 var red_ray: MeshInstance3D
 var green_ray: MeshInstance3D
@@ -133,6 +133,10 @@ func finish_shot():
 	shot_taken = false
 	settle_counter = 0
 	%ShotArrow.show()
+func stop_physics():
+	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+	freeze = true
+	currently_in_motion_override = true
 func _physics_process(_delta):
 	var mouse_pos := get_viewport().get_mouse_position()
 	%Camera3D.global_transform.origin = global_transform.origin + camera_offset
@@ -153,7 +157,7 @@ func _physics_process(_delta):
 			settle_counter += 1
 		else:
 			settle_counter = 0
-		if settle_counter >= SETTLE_FRAMES:
+		if settle_counter >= SETTLE_FRAMES and not currently_in_motion_override:
 			finish_shot()
 	else:
 	
@@ -295,13 +299,13 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			print("Hit ", button_name)
 			match button_name:
 				"red_button":
-					red_button_hit.emit()
+					red_button_hit.emit(self)
 				"blue_button":
-					blue_button_hit.emit()
+					blue_button_hit.emit(self)
 				"purple_button":
-					purple_button_hit.emit()
+					purple_button_hit.emit(self)
 				"green_button":
-					green_button_hit.emit()
+					green_button_hit.emit(self)
 				
 
 
