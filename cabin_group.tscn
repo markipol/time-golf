@@ -1,7 +1,5 @@
 [gd_scene format=4 uid="uid://1qvs7k5tk4it"]
 
-[ext_resource type="Script" uid="uid://fia0s0cvysg" path="res://cabincapture.gd" id="1_g6nka"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4vio"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_w4vio"]
@@ -139,7 +137,6 @@ mesh = SubResource("ArrayMesh_ppv7l")
 
 [node name="cabincapture" type="Area3D" parent="cabin3" unique_id=1772733036]
 collision_mask = 2
-script = ExtResource("1_g6nka")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cabin3/cabincapture" unique_id=83420792]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00046539307, -0.03277588, 0.00061035156)

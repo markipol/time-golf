@@ -9,11 +9,14 @@
 [ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="6_d2lrx"]
 [ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="6_uqoqs"]
 [ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="7_a1jto"]
-[ext_resource type="Material" uid="uid://ddcm5le3aad74" path="res://blue.tres" id="9_puy2i"]
 [ext_resource type="PackedScene" uid="uid://bgu3cq0gea2oe" path="res://course4.glb" id="11_ugmnv"]
 [ext_resource type="PhysicsMaterial" uid="uid://da2on0bg165wb" path="res://floor_physics_material.tres" id="12_d2lrx"]
 [ext_resource type="PackedScene" uid="uid://vl0n0f6lm2v2" path="res://wheel.glb" id="13_w80oy"]
 [ext_resource type="PackedScene" uid="uid://cikuyeh57hp38" path="res://supports.glb" id="14_bls8w"]
+[ext_resource type="PackedScene" uid="uid://1qvs7k5tk4it" path="res://cabin_group.tscn" id="14_uqoqs"]
+[ext_resource type="Script" uid="uid://bqajmd4iuqp1m" path="res://wheel_2.gd" id="15_a1jto"]
+[ext_resource type="Script" uid="uid://dho44e3621kpd" path="res://launcher.gd" id="16_uqoqs"]
+[ext_resource type="PackedScene" uid="uid://l42sppd7lqk3" path="res://fakeball.glb" id="17_a1jto"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
 radius = 0.021273103
@@ -62,11 +65,7 @@ material = SubResource("StandardMaterial3D_arix4")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iyxl4"]
-size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_na1ug"]
-material = ExtResource("9_puy2i")
-size = Vector3(0.1, 0.1, 0.1)
+size = Vector3(0.043, 0.039556153, 0.042267334)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dqwil"]
 panorama = ExtResource("2_e1onv")
@@ -77,6 +76,93 @@ sky_material = SubResource("PanoramaSkyMaterial_dqwil")
 [sub_resource type="Environment" id="Environment_qyvrw"]
 background_mode = 2
 sky = SubResource("Sky_4xkj2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52xu7"]
+albedo_color = Color(0.5729883, 0.5729883, 0.57298815, 1)
+metallic = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_oc035"]
+height = 0.19
+radius = 0.75
+
+[sub_resource type="Animation" id="Animation_puy2i"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallStart/FakeBall:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallStart/FakeBall:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BallStart/FakeBall:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.030178785, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_uck3g"]
+resource_name = "bottom_ball_flaps"
+length = 1.9
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallStart/FakeBall:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.4725, 0, 0.4725, 0, 0, -0.0024999976, 0, 0.0024999976, 0),
+"times": PackedFloat32Array(0, 1.89, 1.9)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallStart/FakeBall:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.4725, 0, 0.4725, 0, 0, -0.0024999976, 0, 0.0024999976, 0),
+"times": PackedFloat32Array(0, 1.89, 1.9)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BallStart/FakeBall:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.005, -0.4725, -0.00125, 0.4725, 0.00125, -0.115, -0.0024999976, 0, 0.0024999976, 0),
+"times": PackedFloat32Array(0, 1.89, 1.9)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j0s0r"]
+_data = {
+&"RESET": SubResource("Animation_puy2i"),
+&"bottom_ball_flaps": SubResource("Animation_uck3g")
+}
 
 [node name="Node3D" type="Node3D" unique_id=1383054765]
 script = ExtResource("1_hcleu")
@@ -93,7 +179,7 @@ visible = false
 visible = false
 
 [node name="BallController" type="Node3D" parent="." unique_id=1544432714]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.098328054, 0.31389987, 0.21741295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10539551, -1.1028721)
 
 [node name="Ball" type="RigidBody3D" parent="BallController" unique_id=207864282]
 transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0, 0, 0)
@@ -159,7 +245,7 @@ offset_bottom = 362.0
 text = "you did it"
 
 [node name="hole" type="Area3D" parent="." unique_id=105525857]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022801638, 0, -1.9714296)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2045933, 0, -1.9714296)
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hole" unique_id=423218514]
@@ -177,18 +263,6 @@ physics_material_override = ExtResource("6_d2lrx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="red_button/MeshInstance3D/red_button" unique_id=886796466]
 shape = SubResource("BoxShape3D_iyxl4")
 
-[node name="blue_button" type="Node3D" parent="." unique_id=1285092889 groups=["buttons"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011426628, 0.12886566, -1.3322107)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="blue_button" unique_id=1165577728]
-mesh = SubResource("BoxMesh_na1ug")
-
-[node name="blue_button" type="StaticBody3D" parent="blue_button/MeshInstance3D" unique_id=1559612630 groups=["buttons"]]
-physics_material_override = ExtResource("6_d2lrx")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="blue_button/MeshInstance3D/blue_button" unique_id=1016058437]
-shape = SubResource("BoxShape3D_iyxl4")
-
 [node name="ghost_balls" type="Node3D" parent="." unique_id=436513514]
 unique_name_in_owner = true
 
@@ -197,18 +271,90 @@ environment = SubResource("Environment_qyvrw")
 
 [node name="course4" parent="." unique_id=801911416 instance=ExtResource("11_ugmnv")]
 
-[node name="StaticBody3D" parent="course4/floor" parent_id_path=PackedInt32Array(801911416, 504694679) index="0" unique_id=235774650]
+[node name="fake-ball" parent="course4" index="0" unique_id=1235321681]
+visible = false
+
+[node name="StaticBody3D" parent="course4/floor" parent_id_path=PackedInt32Array(801911416, 1402119981) index="0" unique_id=1073486810]
 physics_material_override = ExtResource("12_d2lrx")
 
-[node name="StaticBody3D" parent="course4/walls" parent_id_path=PackedInt32Array(801911416, 1885363592) index="0" unique_id=1432956152]
+[node name="front-flap" parent="course4" index="2" unique_id=1385388533]
+surface_material_override/0 = SubResource("StandardMaterial3D_52xu7")
+
+[node name="rails" parent="course4" index="5" unique_id=385853147]
+surface_material_override/0 = SubResource("StandardMaterial3D_52xu7")
+
+[node name="rails_001" parent="course4" index="6" unique_id=915012548]
+surface_material_override/0 = SubResource("StandardMaterial3D_52xu7")
+
+[node name="rear-flap" parent="course4" index="7" unique_id=652427037]
+surface_material_override/0 = SubResource("StandardMaterial3D_52xu7")
+
+[node name="StaticBody3D" parent="course4/walls" parent_id_path=PackedInt32Array(801911416, 493108944) index="0" unique_id=1743822363]
 physics_material_override = ExtResource("6_d2lrx")
 
-[node name="wheel2" parent="course4/walls" parent_id_path=PackedInt32Array(801911416, 1885363592) index="1" unique_id=1314381354 instance=ExtResource("13_w80oy")]
-transform = Transform3D(100, 0, 0, 0, 0, 100, 0, -100, 0, -0.19344762, -163.94176, -100.08831)
+[node name="wheel2" parent="." unique_id=1314381354 instance=ExtResource("13_w80oy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0019344762, 1.0008831, -1.6394175)
 
-[node name="supports2" parent="course4/walls" parent_id_path=PackedInt32Array(801911416, 1885363592) index="2" unique_id=428079199 instance=ExtResource("14_bls8w")]
-transform = Transform3D(100, 0, 0, 0, 0, 100, 0, -100, 0, 0, 0, 0)
+[node name="cabin_group" parent="wheel2" unique_id=2046122872 instance=ExtResource("14_uqoqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3617857, -0.5601379, -0.011535764)
+node_a = NodePath("../wheelstaticbody")
 
+[node name="wheelstaticbody" type="StaticBody3D" parent="wheel2" unique_id=691820021]
+collision_layer = 0
+script = ExtResource("15_a1jto")
+
+[node name="wheelcollision" type="CollisionShape3D" parent="wheel2/wheelstaticbody" unique_id=350574746]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_oc035")
+
+[node name="supports2" parent="." unique_id=428079199 instance=ExtResource("14_bls8w")]
+
+[node name="Launcher" type="Node3D" parent="." unique_id=2014559152 node_paths=PackedStringArray("ball_rigidbody", "fake_ball", "ball_start", "ball_end", "flap_pivot")]
+script = ExtResource("16_uqoqs")
+ball_rigidbody = NodePath("../BallController/Ball")
+fake_ball = NodePath("BallStart/FakeBall")
+ball_start = NodePath("BallStart")
+ball_end = NodePath("BallEnd")
+flap_pivot = NodePath("FlapPivot")
+
+[node name="blue_button" type="Node3D" parent="Launcher" unique_id=1285092889 groups=["buttons"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129, -1.354)
+
+[node name="blue_button" type="StaticBody3D" parent="Launcher/blue_button" unique_id=1559612630 groups=["buttons"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011, -0.07000005)
+physics_material_override = ExtResource("6_d2lrx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Launcher/blue_button/blue_button" unique_id=1016058437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.012087651, 0.01955986)
+shape = SubResource("BoxShape3D_iyxl4")
+
+[node name="BallStart" type="Marker3D" parent="Launcher" unique_id=52768910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10539551, -1.4339602)
+
+[node name="FakeBall" type="CharacterBody3D" parent="Launcher/BallStart" unique_id=1307218017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.030178785)
+visible = false
+
+[node name="Golf Ball2" parent="Launcher/BallStart/FakeBall" unique_id=1037068249 instance=ExtResource("7_a1jto")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Launcher/BallStart/FakeBall" unique_id=1887193918]
+shape = SubResource("SphereShape3D_oc035")
+
+[node name="fakeball" parent="Launcher/BallStart/FakeBall" unique_id=1542963739 instance=ExtResource("17_a1jto")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16416864, -0.018195331, -1.5033677)
+
+[node name="BallEnd" type="Marker3D" parent="Launcher" unique_id=885613379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10539551, -1.5472314)
+
+[node name="FlapPivot" type="Node3D" parent="Launcher" unique_id=1260736737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002696339, 0.14665192, -1.4471083)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Launcher" unique_id=971823574]
+libraries/ = SubResource("AnimationLibrary_j0s0r")
+
+[connection signal="blue_button_hit" from="BallController/Ball" to="Launcher" method="_on_button_hit"]
 [connection signal="body_entered" from="hole" to="BallController/Ball" method="_on_area_3d_body_entered"]
 
 [editable path="course4"]
+[editable path="wheel2"]
+[editable path="wheel2/cabin_group"]

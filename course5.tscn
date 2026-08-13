@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="6_rboyw"]
 [ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="7_or6ac"]
 [ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="8_de254"]
+[ext_resource type="Material" uid="uid://ddcm5le3aad74" path="res://blue.tres" id="8_dmnlx"]
 [ext_resource type="PackedScene" uid="uid://bgu3cq0gea2oe" path="res://course4.glb" id="10_cme3c"]
 [ext_resource type="PhysicsMaterial" uid="uid://da2on0bg165wb" path="res://floor_physics_material.tres" id="11_4gqwf"]
 [ext_resource type="PackedScene" uid="uid://vl0n0f6lm2v2" path="res://wheel.glb" id="11_4rgew"]
@@ -15,6 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="12_s5ai3"]
 [ext_resource type="PackedScene" uid="uid://cikuyeh57hp38" path="res://supports.glb" id="12_sk34a"]
 [ext_resource type="PackedScene" uid="uid://1qvs7k5tk4it" path="res://cabin_group.tscn" id="13_4gqwf"]
+[ext_resource type="Script" uid="uid://b2lk36uior8ej" path="res://ferris_wheel_animations.gd" id="17_ke7fs"]
+[ext_resource type="PackedScene" uid="uid://dq37hci76amio" path="res://frontflap.glb" id="18_inl6m"]
+[ext_resource type="PackedScene" uid="uid://c8bc401wo7lu2" path="res://rearflap.glb" id="19_s5ai3"]
+[ext_resource type="PackedScene" uid="uid://l42sppd7lqk3" path="res://fakeball.glb" id="20_x803h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
 radius = 0.021273103
@@ -55,11 +60,8 @@ shader = SubResource("Shader_5vw27")
 [sub_resource type="BoxShape3D" id="BoxShape3D_igw2x"]
 size = Vector3(0.15, 0.11, 0.15)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arix4"]
-albedo_color = Color(1, 0, 0, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_igw2x"]
-material = SubResource("StandardMaterial3D_arix4")
+material = ExtResource("8_dmnlx")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iyxl4"]
@@ -179,6 +181,18 @@ physics_material_override = ExtResource("8_de254")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="red_button/MeshInstance3D/red_button" unique_id=886796466]
 shape = SubResource("BoxShape3D_iyxl4")
 
+[node name="blue_button" type="Node3D" parent="." unique_id=1732396470 groups=["buttons"]]
+transform = Transform3D(0.38325226, 0, 0, 0, 0.38325226, 0, 0, 0, 0.38325226, 0.00057448447, 0.10792561, -1.4188545)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="blue_button" unique_id=687576037]
+mesh = SubResource("BoxMesh_igw2x")
+
+[node name="blue_button" type="StaticBody3D" parent="blue_button/MeshInstance3D" unique_id=616559125 groups=["buttons"]]
+physics_material_override = ExtResource("8_de254")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="blue_button/MeshInstance3D/blue_button" unique_id=1548421925]
+shape = SubResource("BoxShape3D_iyxl4")
+
 [node name="ghost_balls" type="Node3D" parent="." unique_id=436513514]
 unique_name_in_owner = true
 
@@ -187,10 +201,19 @@ environment = SubResource("Environment_qyvrw")
 
 [node name="course4" parent="." unique_id=293376430 instance=ExtResource("10_cme3c")]
 
-[node name="StaticBody3D" parent="course4/floor" parent_id_path=PackedInt32Array(293376430, 504694679) index="0" unique_id=235774650]
+[node name="fake-ball" parent="course4" index="0" unique_id=1235321681]
+visible = false
+
+[node name="StaticBody3D" parent="course4/floor" parent_id_path=PackedInt32Array(293376430, 1402119981) index="0" unique_id=1073486810]
 physics_material_override = ExtResource("11_4gqwf")
 
-[node name="StaticBody3D" parent="course4/walls" parent_id_path=PackedInt32Array(293376430, 1885363592) index="0" unique_id=1432956152]
+[node name="front-flap" parent="course4" index="2" unique_id=1385388533]
+visible = false
+
+[node name="rear-flap" parent="course4" index="7" unique_id=652427037]
+visible = false
+
+[node name="StaticBody3D" parent="course4/walls" parent_id_path=PackedInt32Array(293376430, 493108944) index="0" unique_id=1743822363]
 physics_material_override = ExtResource("8_de254")
 
 [node name="wheel2" parent="." unique_id=1314381354 instance=ExtResource("11_4rgew")]
@@ -210,10 +233,25 @@ node_a = NodePath("../wheel2")
 
 [node name="supports2" parent="." unique_id=428079199 instance=ExtResource("12_sk34a")]
 
-[connection signal="purple_button_hit" from="BallController/Ball" to="BallController/Ball" method="capture"]
+[node name="animationcontroller" type="Node3D" parent="." unique_id=671400163 node_paths=PackedStringArray("front_flap_AP", "rear_flap_AP", "fake_ball_AP")]
+script = ExtResource("17_ke7fs")
+front_flap_AP = NodePath("../frontflap/AnimationPlayer")
+rear_flap_AP = NodePath("../rearflap/AnimationPlayer")
+fake_ball_AP = NodePath("../fakeball/AnimationPlayer")
+
+[node name="frontflap" parent="." unique_id=246966143 instance=ExtResource("18_inl6m")]
+
+[node name="rearflap" parent="." unique_id=1742093823 instance=ExtResource("19_s5ai3")]
+
+[node name="fakeball" parent="." unique_id=2109696454 instance=ExtResource("20_x803h")]
+
+[connection signal="blue_button_hit" from="BallController/Ball" to="animationcontroller" method="ball_hit_entry"]
 [connection signal="body_entered" from="hole" to="BallController/Ball" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="wheel2/cabin_group/cabin3/cabincapture" to="." method="_on_cabincapture_body_entered"]
 
 [editable path="course4"]
 [editable path="wheel2"]
 [editable path="wheel2/cabin_group"]
+[editable path="frontflap"]
+[editable path="rearflap"]
+[editable path="fakeball"]
