@@ -5,6 +5,7 @@ extends Node3D
 @export var fake_ball: Node3D
 var hit_ball: Node3D #hit_ball is the ball that hit the invisible button originally
 var timer = 0.0
+var cabin
 @export var cabin_raycast: RayCast3D
 enum BallState {
 	NO_BALL,
@@ -71,7 +72,7 @@ func _process(delta):
 				state = BallState.WAITING_FOR_CABIN
 				timer = 0.0
 		BallState.WAITING_FOR_CABIN:
-			var cabin = detect_cabin()
+			cabin = detect_cabin()
 			if cabin:
 				print("Ball reached cabin: " + cabin.name)
 				start_phase2()
@@ -80,7 +81,7 @@ func _process(delta):
 				timer += delta
 				if timer >= 0.5:
 					reset_all()
-					hit_ball.currently_in_motion_override = false
+					cabin.get_parent().get_parent().get_parent().got_ball(hit_ball)
 		BallState.NO_BALL:
 			pass
 			# Wait for animations to finish

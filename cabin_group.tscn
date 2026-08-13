@@ -1,5 +1,7 @@
 [gd_scene format=4 uid="uid://1qvs7k5tk4it"]
 
+[ext_resource type="Script" uid="uid://bayhb242g0bsm" path="res://cabin_group.gd" id="1_g6nka"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4vio"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_w4vio"]
@@ -113,32 +115,37 @@ size = Vector3(0.10430527, 0.17764282, 0.091552734)
 [sub_resource type="BoxShape3D" id="BoxShape3D_g6nka"]
 size = Vector3(0.12916565, 0.15673828, 0.09637451)
 
-[node name="cabin_group" type="PinJoint3D" unique_id=2046122872]
-node_b = NodePath("cabin3")
-params/bias = 0.13
+[node name="cabin_group" type="Node3D" unique_id=1544606819]
+script = ExtResource("1_g6nka")
 
-[node name="cabin3" type="RigidBody3D" parent="." unique_id=2036312370]
+[node name="PinJoint3D" type="PinJoint3D" parent="." unique_id=377900744]
+node_b = NodePath("cabin3")
+
+[node name="cabin3" type="RigidBody3D" parent="PinJoint3D" unique_id=2036312370]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14330271, 0)
 collision_layer = 0
 collision_mask = 0
 
-[node name="cabin2" type="Node3D" parent="cabin3" unique_id=975979226]
+[node name="cabin2" type="Node3D" parent="PinJoint3D/cabin3" unique_id=975979226]
 
-[node name="cabin" type="MeshInstance3D" parent="cabin3/cabin2" unique_id=1006664822]
+[node name="cabin" type="MeshInstance3D" parent="PinJoint3D/cabin3/cabin2" unique_id=1006664822]
 transform = Transform3D(0.52545047, 0, 0, 0, 0, -0.52545047, 0, 0.52545047, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ytsyd")
 
-[node name="door" type="MeshInstance3D" parent="cabin3/cabin2" unique_id=1096464987]
+[node name="door" type="MeshInstance3D" parent="PinJoint3D/cabin3/cabin2" unique_id=1096464987]
 transform = Transform3D(0.52545047, 0, 0, 0, -0.5244332, -0.032678936, 0, 0.032678936, -0.5244332, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ppv7l")
 
-[node name="cabincapture" type="Area3D" parent="cabin3" unique_id=1772733036]
+[node name="cabincapture" type="Area3D" parent="PinJoint3D/cabin3" unique_id=1772733036]
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cabin3/cabincapture" unique_id=83420792]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PinJoint3D/cabin3/cabincapture" unique_id=83420792]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049058914, -1.5258789e-05, 0.00061035156)
 shape = SubResource("BoxShape3D_02wvc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cabin3" unique_id=30404198]
+[node name="ball_placeholder" type="Node3D" parent="PinJoint3D/cabin3/cabincapture" unique_id=2100047834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05304791, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PinJoint3D/cabin3" unique_id=30404198]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021743774, -0.010009766, 0.001739502)
 shape = SubResource("BoxShape3D_g6nka")

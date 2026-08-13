@@ -267,158 +267,182 @@ radius = 16.0
 
 [node name="cabin_group" parent="wheel2/cabins" unique_id=2046122872 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006583713, -0.73707914, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group/cabin3/cabin2" parent_id_path=PackedInt32Array(2046122872, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(2046122872, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group/cabin3/cabin2" parent_id_path=PackedInt32Array(2046122872, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(2046122872, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group/cabin3" parent_id_path=PackedInt32Array(2046122872, 2036312370) index="1" unique_id=1772733036 groups=["cabins"]]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(2046122872, 2036312370) index="1" unique_id=1772733036 groups=["cabins"]]
 collision_mask = 1
 
 [node name="cabin_group2" parent="wheel2/cabins" unique_id=1500015973 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.352, -0.63974184, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group2/cabin3/cabin2" parent_id_path=PackedInt32Array(1500015973, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group2" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group2/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1500015973, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group2/cabin3/cabin2" parent_id_path=PackedInt32Array(1500015973, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group2/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1500015973, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group2/cabin3" parent_id_path=PackedInt32Array(1500015973, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group2/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1500015973, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="cabin_group7" parent="wheel2/cabins" unique_id=266100994 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352, -0.63974184, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group7/cabin3/cabin2" parent_id_path=PackedInt32Array(266100994, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group7" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group7/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(266100994, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group7/cabin3/cabin2" parent_id_path=PackedInt32Array(266100994, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group7/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(266100994, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group7/cabin3" parent_id_path=PackedInt32Array(266100994, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group7/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(266100994, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="cabin_group3" parent="wheel2/cabins" unique_id=568401957 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6224407, -0.3909697, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group3/cabin3/cabin2" parent_id_path=PackedInt32Array(568401957, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group3" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group3/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(568401957, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group3/cabin3/cabin2" parent_id_path=PackedInt32Array(568401957, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group3/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(568401957, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group3/cabin3" parent_id_path=PackedInt32Array(568401957, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group3/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(568401957, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="cabin_group8" parent="wheel2/cabins" unique_id=1563975260 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63657105, 0.4006455, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group8/cabin3/cabin2" parent_id_path=PackedInt32Array(1563975260, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group8" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group8/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1563975260, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group8/cabin3/cabin2" parent_id_path=PackedInt32Array(1563975260, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group8/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1563975260, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group8/cabin3" parent_id_path=PackedInt32Array(1563975260, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group8/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1563975260, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="cabin_group9" parent="wheel2/cabins" unique_id=648139696 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6370001, 0.40062904, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group9/cabin3/cabin2" parent_id_path=PackedInt32Array(648139696, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group9" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group9/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(648139696, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group9/cabin3/cabin2" parent_id_path=PackedInt32Array(648139696, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group9/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(648139696, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group9/cabin3" parent_id_path=PackedInt32Array(648139696, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group9/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(648139696, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="cabin_group10" parent="wheel2/cabins" unique_id=1876850896 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35675296, 0.618469, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group10/cabin3/cabin2" parent_id_path=PackedInt32Array(1876850896, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group10" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group10/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1876850896, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group10/cabin3/cabin2" parent_id_path=PackedInt32Array(1876850896, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group10/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1876850896, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group10/cabin3" parent_id_path=PackedInt32Array(1876850896, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group10/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1876850896, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="cabin_group11" parent="wheel2/cabins" unique_id=810002550 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.357, 0.616997, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group11/cabin3/cabin2" parent_id_path=PackedInt32Array(810002550, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group11" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group11/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(810002550, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group11/cabin3/cabin2" parent_id_path=PackedInt32Array(810002550, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group11/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(810002550, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group11/cabin3" parent_id_path=PackedInt32Array(810002550, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group11/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(810002550, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="cabin_group12" parent="wheel2/cabins" unique_id=1468916579 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0022132397, 0.7241596, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group12/cabin3/cabin2" parent_id_path=PackedInt32Array(1468916579, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group12" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group12/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1468916579, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group12/cabin3/cabin2" parent_id_path=PackedInt32Array(1468916579, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group12/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1468916579, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group12/cabin3" parent_id_path=PackedInt32Array(1468916579, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group12/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1468916579, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="cabin_group6" parent="wheel2/cabins" unique_id=1476722703 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.622, -0.39074183, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group6/cabin3/cabin2" parent_id_path=PackedInt32Array(1476722703, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group6" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group6/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1476722703, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group6/cabin3/cabin2" parent_id_path=PackedInt32Array(1476722703, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group6/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1476722703, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group6/cabin3" parent_id_path=PackedInt32Array(1476722703, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group6/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1476722703, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="cabin_group4" parent="wheel2/cabins" unique_id=944219648 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7272903, -0.008434176, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group4/cabin3/cabin2" parent_id_path=PackedInt32Array(944219648, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group4" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group4/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(944219648, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group4/cabin3/cabin2" parent_id_path=PackedInt32Array(944219648, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group4/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(944219648, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group4/cabin3" parent_id_path=PackedInt32Array(944219648, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group4/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(944219648, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="cabin_group5" parent="wheel2/cabins" unique_id=1885018850 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.727, -0.008741856, 0)
-node_a = NodePath("../../wheel_static_body")
 
-[node name="cabin" parent="wheel2/cabins/cabin_group5/cabin3/cabin2" parent_id_path=PackedInt32Array(1885018850, 975979226) index="0" unique_id=1006664822]
+[node name="PinJoint3D" parent="wheel2/cabins/cabin_group5" index="0" unique_id=377900744]
+node_a = NodePath("../../../wheel_static_body")
+
+[node name="cabin" parent="wheel2/cabins/cabin_group5/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1885018850, 975979226) index="0" unique_id=1006664822]
 surface_material_override/0 = ExtResource("16_ke7fs")
 
-[node name="door" parent="wheel2/cabins/cabin_group5/cabin3/cabin2" parent_id_path=PackedInt32Array(1885018850, 975979226) index="1" unique_id=1096464987]
+[node name="door" parent="wheel2/cabins/cabin_group5/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1885018850, 975979226) index="1" unique_id=1096464987]
 surface_material_override/0 = ExtResource("8_dmnlx")
 
-[node name="cabincapture" parent="wheel2/cabins/cabin_group5/cabin3" parent_id_path=PackedInt32Array(1885018850, 2036312370) index="1" unique_id=1772733036]
+[node name="cabincapture" parent="wheel2/cabins/cabin_group5/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1885018850, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
 [node name="supports2" parent="." unique_id=428079199 instance=ExtResource("12_sk34a")]
