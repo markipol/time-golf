@@ -108,13 +108,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qvyyj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_02wvc"]
-size = Vector3(0.20335388, 0.17053223, 0.091552734)
+size = Vector3(0.12478447, 0.17053223, 0.091552734)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g6nka"]
 size = Vector3(0.12916565, 0.15673828, 0.09637451)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_j7a5g"]
-size = Vector3(0.12916565, 0.15673828, 0.046310425)
 
 [node name="cabin_group" type="PinJoint3D" unique_id=2046122872]
 node_b = NodePath("cabin3")
@@ -139,16 +136,9 @@ mesh = SubResource("ArrayMesh_ppv7l")
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cabin3/cabincapture" unique_id=83420792]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00046539307, -0.03277588, 0.00061035156)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.060275078, -0.03277588, 0.00061035156)
 shape = SubResource("BoxShape3D_02wvc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cabin3" unique_id=30404198]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021743774, -0.010009766, 0.001739502)
 shape = SubResource("BoxShape3D_g6nka")
-
-[node name="purple_button" type="StaticBody3D" parent="cabin3" unique_id=865172156 groups=["buttons"]]
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cabin3/purple_button" unique_id=1800948994]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021743774, -0.010009766, -0.06739044)
-shape = SubResource("BoxShape3D_j7a5g")

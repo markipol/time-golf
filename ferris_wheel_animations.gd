@@ -3,10 +3,20 @@ extends Node3D
 @export var rear_flap_AP: AnimationPlayer
 @export var fake_ball_AP: AnimationPlayer
 @export var fake_ball: Node3D
+
 var elapsed := 0.0
 var phase1 := false
+var phase1done:= false
 var phase2 := false
 var hit_ball: Node3D
+@export var cabin_raycast: RayCast3D
+
+#func _ready():
+	## Create raycast that points forward from the fake ball
+	#cabin_raycast = RayCast3D.new()
+	#cabin_raycast.target_position = Vector3.FORWARD * 10
+	#cabin_raycast.enabled = true
+	#fake_ball.add_child(cabin_raycast)
 func ball_hit_entry(ball: RigidBody3D):
 	if not phase1:
 		front_flap_AP.play("fake-ballAction")
@@ -18,6 +28,19 @@ func ball_hit_entry(ball: RigidBody3D):
 		fake_ball.show()
 		elapsed = 0.0
 		phase1 = true
+func checkForCabin():
+	if phase1done:
+		if cabin_raycast.is_colliding():
+			var collider = cabin_raycast.get_collider()
+			if collider.is_in_group("cabins"):
+				print("Hit cabin: ", collider.name)
+func detect_cabin():
+	cabin_raycast.force_raycast_update()
+	if cabin_raycast.is_colliding():
+		var collider = cabin_raycast.get_collider()
+		if collider:
+			return collider
+	return null
 func phase2start():
 	phase2 = true
 
@@ -26,10 +49,15 @@ func _process(delta):
 		hit_ball.global_transform = fake_ball.global_transform
 		elapsed += delta
 		if elapsed >= 1.0 and not phase2:
-			
-			front_flap_AP.pause()
-			rear_flap_AP.pause()
-			fake_ball_AP.pause()
+			if not phase1done:
+				front_flap_AP.pause()
+				rear_flap_AP.pause()
+				fake_ball_AP.pause()
+				phase1done = true
+			var cabin = detect_cabin()
+			if cabin:
+				print("Ball reached cabin: " + cabin.name)
+				phase2start()
 		elif phase2:
 			front_flap_AP.play("fake-ballAction")
 			rear_flap_AP.play("front-flapAction_001")
