@@ -4,7 +4,11 @@ signal red_button_hit(ball)
 signal blue_button_hit(ball)
 signal purple_button_hit(ball)
 signal green_button_hit(ball)
-
+var currently_in_motion_override = false
+func stop_physics():
+	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+	freeze = true
+	currently_in_motion_override = true
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	
 	for i in state.get_contact_count():
