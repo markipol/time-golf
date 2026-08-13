@@ -1,3 +1,4 @@
+class_name Ball
 extends RigidBody3D
 
 signal red_button_hit(ball)
@@ -21,6 +22,7 @@ var max_distance = 0.3
 @export var debug_rays: bool = false
 @export var power_multiplier = 0.25
 @onready var camera: Camera3D = %Camera3D
+@export var fixed_camera = false
 var camera_offset: Vector3
 var has_grounded_transform := false
 var original_global_transform_grounded: Transform3D
@@ -48,8 +50,10 @@ func _ready() -> void:
 	yaw = rad_to_deg(rotation.y)
 	$InspectorArrow.hide()
 	%ShotArrow.hide()
-	camera_offset = %Camera3D.global_transform.origin - global_transform.origin
-	
+	if not fixed_camera:
+		camera_offset = %Camera3D.global_transform.origin - global_transform.origin
+
+		
 	##RAY
 	red_ray = MeshInstance3D.new()
 	green_ray = MeshInstance3D.new()
@@ -137,9 +141,13 @@ func stop_physics():
 	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
 	freeze = true
 	currently_in_motion_override = true
+func start_physics():
+	freeze = false
+	currently_in_motion_override = false
 func _physics_process(_delta):
 	var mouse_pos := get_viewport().get_mouse_position()
-	%Camera3D.global_transform.origin = global_transform.origin + camera_offset
+	if not fixed_camera:
+		%Camera3D.global_transform.origin = global_transform.origin + camera_offset
 	if not original_global_transform_grounded:
 		if grounded:
 			settle_counter += 1
@@ -310,5 +318,5 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print("i knew you could do it")
+	print("I KNEW YOU COULD DO IT!!!! THPS 3+4 MISSION PASSED THEME! FUCK HER!")
 	label.show()

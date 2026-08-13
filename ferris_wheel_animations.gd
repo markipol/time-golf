@@ -81,7 +81,12 @@ func _process(delta):
 				timer += delta
 				if timer >= 0.5:
 					reset_all()
-					cabin.get_parent().get_parent().get_parent().got_ball(hit_ball)
+					if hit_ball.get_parent().name == "BallController":
+						hit_ball.start_physics()
+						hit_ball.show()
+						
+					else:
+						cabin.get_parent().get_parent().get_parent().got_ball(hit_ball)
 		BallState.NO_BALL:
 			pass
 			# Wait for animations to finish

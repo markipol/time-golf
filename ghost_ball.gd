@@ -9,6 +9,9 @@ func stop_physics():
 	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
 	freeze = true
 	currently_in_motion_override = true
+func start_physics():
+	freeze = false
+	currently_in_motion_override = false
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	
 	for i in state.get_contact_count():

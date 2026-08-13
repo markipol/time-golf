@@ -1,9 +1,6 @@
 [gd_scene format=3 uid="uid://dceu6lqlv3ej4"]
 
 [ext_resource type="Script" uid="uid://c71o3svh73ojt" path="res://main.gd" id="1_4rgew"]
-[ext_resource type="PackedScene" uid="uid://7u10ighvfqc4" path="res://kenney_minigolf-kit/Models/GLB format/straight.glb" id="2_sk34a"]
-[ext_resource type="PackedScene" uid="uid://dndrtyreluq5w" path="res://kenney_minigolf-kit/Models/GLB format/hole-round.glb" id="3_n1qua"]
-[ext_resource type="PackedScene" uid="uid://dh3scxi7nciy6" path="res://kenney_minigolf-kit/Models/GLB format/end.glb" id="4_4gqwf"]
 [ext_resource type="PhysicsMaterial" uid="uid://wn3f585ardup" path="res://ball_physics_mat.tres" id="5_bdsio"]
 [ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="6_rboyw"]
 [ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="7_or6ac"]
@@ -16,11 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="12_s5ai3"]
 [ext_resource type="PackedScene" uid="uid://cikuyeh57hp38" path="res://supports.glb" id="12_sk34a"]
 [ext_resource type="PackedScene" uid="uid://1qvs7k5tk4it" path="res://cabin_group.tscn" id="13_4gqwf"]
+[ext_resource type="Script" uid="uid://d0f80dhsxsrtq" path="res://cabins_attacher.gd" id="15_s5ai3"]
 [ext_resource type="Material" uid="uid://b6uqqk3hrweb3" path="res://orange_cabin.tres" id="16_ke7fs"]
 [ext_resource type="Script" uid="uid://b2lk36uior8ej" path="res://ferris_wheel_animations.gd" id="17_ke7fs"]
 [ext_resource type="PackedScene" uid="uid://dq37hci76amio" path="res://frontflap.glb" id="18_inl6m"]
 [ext_resource type="PackedScene" uid="uid://c8bc401wo7lu2" path="res://rearflap.glb" id="19_s5ai3"]
 [ext_resource type="PackedScene" uid="uid://l42sppd7lqk3" path="res://fakeball.glb" id="20_x803h"]
+[ext_resource type="PackedScene" uid="uid://oilqd32iudcl" path="res://course4-upper.glb" id="22_inl6m"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
 radius = 0.021273103
@@ -59,7 +58,7 @@ render_priority = 0
 shader = SubResource("Shader_5vw27")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_igw2x"]
-size = Vector3(0.15, 0.11, 0.15)
+size = Vector3(0.15, 0.050117187, 0.15)
 
 [sub_resource type="BoxMesh" id="BoxMesh_igw2x"]
 material = ExtResource("8_dmnlx")
@@ -82,54 +81,12 @@ sky = SubResource("Sky_4xkj2")
 height = 0.18
 radius = 0.74072266
 
-[sub_resource type="GDScript" id="GDScript_ke7fs"]
-script/source = "@tool
-extends Node3D
-
-@export var radius: float = 10.0
-@export var center: Vector3 = Vector3.ZERO
-
-@export_tool_button(\"Arrange Cabins\") var circle_action = arrange_cabins_button
-func arrange_cabins_button():
-	print(\"Button pressed → arranging cabins\")
-	arrange_cabins()
-
-func arrange_cabins():
-	var cabins = get_children()
-	var count = cabins.size()
-	if count == 0:
-		print(\"No cabins found\")
-		return
-
-	for i in range(count):
-		var angle = (float(i) / count) * TAU
-		var x = center.x + radius * cos(angle)
-		var z = center.z + radius * sin(angle)
-
-		var cabin = cabins[i]
-		cabin.transform.origin = Vector3(x, center.y, z)
-		cabin.look_at(center, Vector3.UP)
-
-	print(\"Cabins arranged!\")
-"
-
 [node name="Node3D" type="Node3D" unique_id=1383054765]
 script = ExtResource("1_4rgew")
 
-[node name="straight2" parent="." unique_id=871488194 instance=ExtResource("2_sk34a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-visible = false
-
-[node name="hole-round2" parent="." unique_id=74229217 instance=ExtResource("3_n1qua")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -2)
-visible = false
-
-[node name="end2" parent="." unique_id=1561097105 instance=ExtResource("4_4gqwf")]
-visible = false
-
 [node name="BallController" type="Node3D" parent="." unique_id=1544432714]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.098328054, 0.31389987, -1.0297068)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.314, -0.17598602)
 
 [node name="Ball" type="RigidBody3D" parent="BallController" unique_id=207864282]
 transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0, 0, 0)
@@ -142,6 +99,7 @@ max_contacts_reported = 4
 linear_damp = 0.1
 angular_damp = 0.05
 script = ExtResource("6_rboyw")
+fixed_camera = true
 
 [node name="Golf Ball2" parent="BallController/Ball" unique_id=1954682578 instance=ExtResource("7_or6ac")]
 
@@ -161,7 +119,7 @@ mesh = SubResource("PrismMesh_02wvc")
 
 [node name="Camera3D" type="Camera3D" parent="BallController" unique_id=1684026385]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.7830422, 0.6219686, 0, -0.6219686, 0.7830422, -2.9802322e-08, 0.43197763, 0.6679543)
+transform = Transform3D(1, -7.255907e-06, 5.1279735e-06, 8.0895103e-07, 0.64910066, 0.7607026, -8.848157e-06, -0.7607026, 0.64910066, -2.9802322e-08, 2.5954742, 1.0945449)
 current = true
 
 [node name="ShotArrow" type="Node3D" parent="BallController" unique_id=1968826682]
@@ -195,11 +153,11 @@ offset_bottom = 362.0
 text = "you did it"
 
 [node name="hole" type="Area3D" parent="." unique_id=105525857]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5269573, 0, -1.9714296)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0030329227, 1.3123307, -3.2541878)
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hole" unique_id=423218514]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.030394554, 0)
 shape = SubResource("BoxShape3D_igw2x")
 
 [node name="red_button" type="Node3D" parent="." unique_id=869062564 groups=["buttons"]]
@@ -261,9 +219,9 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_n1qua")
 
-[node name="cabins" type="Node3D" parent="wheel2" unique_id=1306825928]
-script = SubResource("GDScript_ke7fs")
-radius = 16.0
+[node name="cabins" type="Node3D" parent="wheel2" unique_id=1306825928 node_paths=PackedStringArray("ball")]
+script = ExtResource("15_s5ai3")
+ball = NodePath("../../BallController/Ball")
 
 [node name="cabin_group" parent="wheel2/cabins" unique_id=2046122872 instance=ExtResource("13_4gqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006583713, -0.73707914, 0)
@@ -470,8 +428,11 @@ hit_from_inside = true
 collide_with_areas = true
 debug_shape_thickness = 5
 
+[node name="course4-upper" parent="." unique_id=2040815957 instance=ExtResource("22_inl6m")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=293382922]
+
 [connection signal="blue_button_hit" from="BallController/Ball" to="animationcontroller" method="ball_hit_entry"]
-[connection signal="red_button_hit" from="BallController/Ball" to="animationcontroller" method="checkForCabin"]
 [connection signal="body_entered" from="hole" to="BallController/Ball" method="_on_area_3d_body_entered"]
 
 [editable path="course4"]
@@ -491,3 +452,4 @@ debug_shape_thickness = 5
 [editable path="frontflap"]
 [editable path="rearflap"]
 [editable path="fakeball"]
+[editable path="course4-upper"]
