@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://cs7b6827nhya1"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://wn3f585ardup" path="res://ball_physics_mat.tres" id="1_uxbfy"]
+[ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="2_4h14u"]
+[ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="3_ugw63"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
+radius = 0.021273103
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_py581"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_02wvc"]
+material = SubResource("StandardMaterial3D_py581")
+size = Vector3(0.03, 0.03, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_02wvc"]
+material = SubResource("StandardMaterial3D_5vw27")
+size = Vector3(0.05, 0.03, 0.03)
+
+[sub_resource type="Shader" id="Shader_5vw27"]
+code = "shader_type spatial;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+render_priority = 0
+shader = SubResource("Shader_5vw27")
+
+[node name="BallController" type="Node3D" unique_id=630139811]
+
+[node name="Ball" type="RigidBody3D" parent="." unique_id=316334837]
+transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0, 0, 0)
+collision_layer = 2
+mass = 0.045
+physics_material_override = ExtResource("1_uxbfy")
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 4
+linear_damp = 0.05
+angular_damp = 0.05
+script = ExtResource("2_4h14u")
+
+[node name="Golf Ball2" parent="Ball" unique_id=1954682578 instance=ExtResource("3_ugw63")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball" unique_id=53797985]
+shape = SubResource("SphereShape3D_oc035")
+
+[node name="InspectorArrow" type="Node3D" parent="Ball" unique_id=444553771]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball/InspectorArrow" unique_id=365514593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+mesh = SubResource("BoxMesh_02wvc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Ball/InspectorArrow" unique_id=1579280046]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.155)
+mesh = SubResource("PrismMesh_02wvc")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=587639385]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.7830422, 0.6219686, 0, -0.6219686, 0.7830422, -2.9802322e-08, 0.43197763, 0.6679543)
+
+[node name="ShotArrow" type="Node3D" parent="." unique_id=1749755407]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ShotArrow" unique_id=1859666452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.18911491)
+mesh = SubResource("BoxMesh_02wvc")
+surface_material_override/0 = SubResource("ShaderMaterial_5vw27")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ShotArrow" unique_id=161352543]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.35399345)
+mesh = SubResource("PrismMesh_02wvc")
