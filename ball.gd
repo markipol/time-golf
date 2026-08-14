@@ -1,65 +1,58 @@
 class_name Ball
 extends GenericBall
 
-signal red_button_hit(ball)
-signal blue_button_hit(ball)
-signal purple_button_hit(ball)
-signal green_button_hit(ball)
 
-var angle := Vector2(0, 1)
-var yaw := 0.0             # degrees
-var power := 0.0
-var max_power := 100.0
-var min_power := 0.0
+
+var angle: Vector2 = Vector2(0, 1)
+
+var power:float = 0.0
+var max_power :float = 100.0
+var min_power :float= 0.0
 var label: Label
-var is_dragging := false
-var drag_vector := Vector2.ZERO
-var start_mouse_pos := Vector2.ZERO
-var angle_speed := 90.0    # degrees per second
-var power_speed := 50.0    # units per second
-var min_distance = 0.08
-var max_distance = 0.3
+var is_dragging :bool= false
+var drag_vector :Vector2= Vector2.ZERO
+var start_mouse_pos :Vector2= Vector2.ZERO
+var angle_speed :float= 90.0    # degrees per second
+var power_speed :float= 50.0    # units per second
+var min_distance:float = 0.08
+var max_distance:float = 0.3
 @export var debug_rays: bool = false
-@export var power_multiplier = 0.25
+@export var power_multiplier: float = 0.25
 @onready var camera: Camera3D = %Camera3D
-@export var fixed_camera = false
+@export var fixed_camera:bool = false
 var camera_offset: Vector3
-var has_grounded_transform := false
+var has_grounded_transform :bool = false
 var original_global_transform_grounded: Transform3D
-var grounded = false
-@export var SPEED_THRESHOLD := 0.5
-@export var ANGULAR_THRESHOLD := 0.2
-@export var SETTLE_FRAMES := 20
-@export var settle_counter = 0
-@export var ghost_ball_scene = preload("res://ghost_ball.tscn")
 
-var col_min = Color.WHITE
-var col_mid = Color(1.0, 0.5, 0.0) # orange
-var col_max = Color.RED
+@export var SPEED_THRESHOLD :float= 0.5
+@export var ANGULAR_THRESHOLD :float= 0.2
+@export var SETTLE_FRAMES :int= 20
+@export var settle_counter:int = 0
+@onready var ghost_ball_scene:PackedScene = preload("res://ghost_ball.tscn")
+
+var col_min:Color = Color.WHITE
+var col_mid:Color = Color(1.0, 0.5, 0.0) # orange
+var col_max :Color= Color.RED
 var arrow_mat: StandardMaterial3D
 var stem: MeshInstance3D
 var arrow: MeshInstance3D
-var shot_taken = false
-var previous_shots = []
-var currently_in_motion_override = false
+var shot_taken:bool = false
+var previous_shots:Array = []
+
 #RAY
 var red_ray: MeshInstance3D
 var green_ray: MeshInstance3D
 
-# --- Bounce SFX ---
-var bounce_sounds := [
-	preload("res://sounds/bounce1.wav"),
-	preload("res://sounds/bounce2.wav"),
-	preload("res://sounds/bounce3.wav")
-]
 
-var bounce_cooldown := 0.05  # 50ms between sounds
-var last_bounce_time := 0.0
-var min_impact := 1.0        # ignore tiny taps
+var p: AudioStreamPlayer3D 
+@onready var hole_sound: AudioStream = preload("res://sounds/in_hole.wav")
+@onready var hit_sound: AudioStream = preload("res://sounds/boop.wav")
 
 func _ready() -> void:
 	label = %WinHoleLabel
-	yaw = rad_to_deg(rotation.y)
+	
+	p = AudioStreamPlayer3D.new()
+	add_child(p)
 	$InspectorArrow.hide()
 	%ShotArrow.hide()
 	if not fixed_camera:
@@ -106,12 +99,7 @@ func _ready() -> void:
 	stem.material_override = arrow_mat
 	arrow.material_override = arrow_mat
 	
-func is_grounded(state: PhysicsDirectBodyState3D) -> bool:
-	for i in range(state.get_contact_count()):
-		var normal = state.get_contact_local_normal(i)
-		if normal.dot(Vector3.UP) > 0.7:
-			return true
-	return false
+
 func draw_ray(mesh_instance: MeshInstance3D, from: Vector3, to: Vector3) -> void:
 	var direction := to - from
 	var length := direction.length()
@@ -149,13 +137,6 @@ func finish_shot():
 	shot_taken = false
 	settle_counter = 0
 	%ShotArrow.show()
-func stop_physics():
-	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
-	freeze = true
-	currently_in_motion_override = true
-func start_physics():
-	freeze = false
-	currently_in_motion_override = false
 func _physics_process(_delta):
 	var mouse_pos := get_viewport().get_mouse_position()
 	if not fixed_camera:
@@ -219,54 +200,12 @@ func _physics_process(_delta):
 				)
 
 
-		#print("Mouse: ", mouse_pos)
-		#print("Ray origin: ", ray_origin)
-		#print("Ray direction: ", ray_direction)
-		#print("Mouse world: ", mouse_world_pos)
-		#print("Ball: ", global_position)
-		
-		
-		## --- AIM LEFT/RIGHT ---
-		#if Input.is_action_pressed("ui_left"):
-			#yaw += angle_speed * delta
-			#
-		#if Input.is_action_pressed("ui_right"):
-			#yaw -= angle_speed * delta
-			#
-		#%ShotArrow.rotation.y = deg_to_rad(yaw) + PI
-		#%ShotArrow.rotation.x = 0
-		#%ShotArrow.rotation.z = 0
-		#%ShotArrow.position = position
-		#
-		## Convert yaw to a direction vector on XZ plane
-		#angle = Vector2(
-			#sin(deg_to_rad(yaw)),
-			#cos(deg_to_rad(yaw))
-		#)
-		#if mouse_world_pos != null:
-			##print("Distance: ", global_position.distance_to(mouse_world_pos))
-			#var direction = global_position - mouse_world_pos
-			#direction.y = 0
-	#
-			#if direction.length_squared() > 0.001:
-				#direction = direction.normalized()
-	#
-				## This is now the ball's aim direction
-				#angle = Vector2(direction.x, direction.z)
 
 		%ShotArrow.rotation.y = atan2(angle.x, angle.y) + PI
 		%ShotArrow.rotation.z = 0
 		%ShotArrow.rotation.x = 0
 		%ShotArrow.position = position
-		## --- POWER CONTROL ---
-		#if Input.is_action_just_pressed("ui_up"):
-			#power += power_speed * delta
-			#print("Power: ", power)
-		#if Input.is_action_just_pressed("ui_down"):
-			#power -= power_speed * delta
-			#print("Power: ", power)
-	#
-		#power = clamp(power, min_power, max_power)
+
 
 		# --- SHOOT ---
 		if mouse_world_pos !=null:
@@ -293,14 +232,21 @@ func _physics_process(_delta):
 			
 			
 			arrow_mat.albedo_color = col
-			#print("PM", power_multiplier)
+			print("PM", power_multiplier)
+			print("Clamped power meter" + str(percent_power_meter))
 			power = clamped_power_meter * power_multiplier
 			#print("Power: ", str(power))
 			
 			if Input.is_action_just_pressed("shoot"):
 				#print("SHOT!")
 				#print("Power: ", power)
-
+				
+				
+				p.pitch_scale = randf_range(0.9, 1.1)
+				p.volume_db = lerp(-28.0, -1.0, clamped_power_meter)
+				p.stream = hit_sound
+				p.play()
+				
 				# Apply force in the aimed direction
 				var force := Vector3(angle.x, 0, angle.y) * power
 				apply_central_impulse(force)
@@ -309,58 +255,21 @@ func _physics_process(_delta):
 				%ShotArrow.hide()
 
 
-func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	grounded = is_grounded(state)
-	for i in state.get_contact_count():
-		var body = state.get_contact_collider_object(i)
-		if body:
 
-			if body.is_in_group("walls"):
-				var contact_vel := state.get_contact_local_velocity_at_position(i)
-				var impact := contact_vel.length()
-				print(str(impact))
-				if impact > min_impact:
-					play_bounce_sound(impact)
-			if body and body.is_in_group("buttons"):
-				var button_name = body.name
-				print("Hit ", button_name)
-				match button_name:
-					"red_button":
-						red_button_hit.emit(self)
-					"blue_button":
-						blue_button_hit.emit(self)
-					"purple_button":
-						purple_button_hit.emit(self)
-					"green_button":
-						green_button_hit.emit(self)
-				
-func play_bounce_sound(impact: float) -> void:
-	# Cooldown to prevent spam
-	var now := Time.get_ticks_msec()
-	if now - last_bounce_time < int(bounce_cooldown * 1000.0):
-		return
-	last_bounce_time = now
 
-	# Pick a random bounce sound
-	var stream = bounce_sounds.pick_random()
 
-	# Create a temporary player
-	var p := AudioStreamPlayer3D.new()
-	p.stream = stream
-
-	# Random pitch variation
-	p.pitch_scale = randf_range(0.9, 1.1)
-
-	# Volume based on impact strength
-	p.volume_db = lerp(-18, 0, clamp(impact / 10.0, 0.0, 1.0))
-
-	add_child(p)
-	p.play()
-
-	# Auto-delete when done
-	p.connect("finished", p.queue_free)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("i knew you could do it")
+	var hole_player :AudioStreamPlayer3D= AudioStreamPlayer3D.new()
+	hole_player.stream = hole_sound
+	# Random pitch variation
+	hole_player.pitch_scale = randf_range(0.9, 1.1)
+	hole_player.volume_db = 12.0
+	add_child(hole_player)
+	hole_player.play()
+
+	# Auto-delete when done
+	hole_player.connect("finished", hole_player.queue_free)
 	label.show()
 	

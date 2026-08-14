@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c71o3svh73ojt" path="res://main.gd" id="1_8q5vr"]
 [ext_resource type="PackedScene" uid="uid://c5ndrmio44t7a" path="res://ball_controlled.tscn" id="3_khudx"]
 [ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="3_tsjc7"]
+[ext_resource type="AudioStream" uid="uid://k2opm4c1y0wa" path="res://sounds/castle_gate.wav" id="9_1kmic"]
 [ext_resource type="PackedScene" uid="uid://cmhy46iimgqa1" path="res://course1-real.glb" id="9_cl2tl"]
 [ext_resource type="PhysicsMaterial" uid="uid://da2on0bg165wb" path="res://floor_physics_material.tres" id="10_o3axj"]
 [ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="11_gr2yf"]
@@ -106,7 +107,6 @@ SPEED_THRESHOLD = null
 ANGULAR_THRESHOLD = null
 SETTLE_FRAMES = null
 settle_counter = null
-ghost_ball_scene = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1861630881]
 transform = Transform3D(1, 0, 0, 0, -0.4795209, 0.87753046, 0, -0.87753046, -0.4795209, 0, 0, 0)
@@ -157,6 +157,8 @@ shape = SubResource("BoxShape3D_iyxl4")
 [node name="gate" type="Node3D" parent="." unique_id=1216292546]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23198378, 0.0797513, -1.6961315)
 script = ExtResource("13_gumm7")
+sound = ExtResource("9_1kmic")
+sound_percent_volume = 0.2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="gate" unique_id=1712509975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015527338, 0, 0)

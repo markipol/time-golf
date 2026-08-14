@@ -1,1 +1,5 @@
 "Low-Poly Golf Ball" (https://skfb.ly/pMyr6) by realanthonycolmenero is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+golf_putting.wav by inbeeld, CC0 license. https://freesound.org/people/inbeeld/sounds/21878/
+
+Minigolf Kit by Kenney, CC0 license. Used for the models of the course, except the ferris wheel. https://www.kenney.nl/assets/minigolf-kit

@@ -7,6 +7,9 @@ var hit_ball: Node3D #hit_ball is the ball that hit the invisible button origina
 var timer = 0.0
 var cabin
 @export var cabin_raycast: RayCast3D
+var launch_entry_sound: AudioStream = preload("res://sounds/ferrislaunchentry.wav")
+var launch_exit_sound: AudioStream = preload("res://sounds/ferrislaunchexit.wav")
+var p: AudioStreamPlayer3D
 enum BallState {
 	NO_BALL,
 	PHASE1_PLAYING,
@@ -21,6 +24,10 @@ var state : BallState = BallState.NO_BALL
 	#cabin_raycast.target_position = Vector3.FORWARD * 10
 	#cabin_raycast.enabled = true
 	#fake_ball.add_child(cabin_raycast)
+func _ready() -> void:
+	p = AudioStreamPlayer3D.new()
+	add_child(p)
+	
 func ball_hit_entry(ball: RigidBody3D):
 	if state != BallState.NO_BALL:
 		return
@@ -32,6 +39,9 @@ func ball_hit_entry(ball: RigidBody3D):
 	front_flap_AP.play("fake-ballAction")
 	rear_flap_AP.play("front-flapAction_001")
 	fake_ball_AP.play("fake-ballAction")
+	p.stream = launch_entry_sound
+	
+	p.play()
 	timer = 0.0
 
 
@@ -47,6 +57,8 @@ func start_phase2():
 	front_flap_AP.play("fake-ballAction")
 	rear_flap_AP.play("front-flapAction_001")
 	fake_ball_AP.play("fake-ballAction")
+	p.stream = launch_exit_sound
+	p.play()
 	
 	
 func reset_all():

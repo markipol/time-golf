@@ -3,6 +3,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://wn3f585ardup" path="res://ball_physics_mat.tres" id="1_lxgcx"]
 [ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="2_lcvog"]
 [ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="3_lt3vt"]
+[ext_resource type="AudioStream" uid="uid://dtk8q13e0aglx" path="res://sounds/boop.wav" id="4_lcvog"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
 radius = 0.021273103
@@ -19,7 +20,7 @@ size = Vector3(0.03, 0.03, 0.3)
 material = SubResource("StandardMaterial3D_5vw27")
 size = Vector3(0.05, 0.03, 0.03)
 
-[node name="Ball" type="RigidBody3D" unique_id=1936745447 node_paths=PackedStringArray("label")]
+[node name="Ball" type="RigidBody3D" unique_id=1936745447]
 transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0, 0, 0)
 collision_layer = 2
 mass = 0.045
@@ -30,7 +31,6 @@ max_contacts_reported = 4
 linear_damp = 0.05
 angular_damp = 0.05
 script = ExtResource("2_lcvog")
-label = NodePath("")
 
 [node name="Golf Ball2" parent="." unique_id=1954682578 instance=ExtResource("3_lt3vt")]
 
@@ -46,3 +46,6 @@ mesh = SubResource("BoxMesh_02wvc")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="InspectorArrow" unique_id=1047756357]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.155)
 mesh = SubResource("PrismMesh_02wvc")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1816151115]
+stream = ExtResource("4_lcvog")
