@@ -99,6 +99,14 @@ mesh = SubResource("PrismMesh_02wvc")
 
 [node name="Ball" parent="." unique_id=1936745447 instance=ExtResource("3_khudx")]
 transform = Transform3D(-0.49999985, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999985, 0.21282977, 0.31389987, -0.024847567)
+debug_rays = null
+power_multiplier = null
+fixed_camera = null
+SPEED_THRESHOLD = null
+ANGULAR_THRESHOLD = null
+SETTLE_FRAMES = null
+settle_counter = null
+ghost_ball_scene = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1861630881]
 transform = Transform3D(1, 0, 0, 0, -0.4795209, 0.87753046, 0, -0.87753046, -0.4795209, 0, 0, 0)
@@ -110,7 +118,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.21
 [node name="StaticBody3D" parent="course1-real/floor" parent_id_path=PackedInt32Array(1838724994, 1075548939) index="0" unique_id=570318129]
 physics_material_override = ExtResource("10_o3axj")
 
-[node name="StaticBody3D" parent="course1-real/walls" parent_id_path=PackedInt32Array(1838724994, 654017013) index="0" unique_id=1830394558]
+[node name="StaticBody3D" parent="course1-real/walls" parent_id_path=PackedInt32Array(1838724994, 654017013) index="0" unique_id=1830394558 groups=["walls"]]
 physics_material_override = ExtResource("11_gr2yf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=76987635]

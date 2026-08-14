@@ -1,3 +1,4 @@
+class_name GenericBall
 extends RigidBody3D
 
 signal red_button_hit(ball)

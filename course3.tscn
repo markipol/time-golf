@@ -60,11 +60,14 @@ material = SubResource("StandardMaterial3D_arix4")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iyxl4"]
-size = Vector3(0.1, 0.1, 0.1)
+size = Vector3(0.1, 0.1, 0.867688)
 
 [sub_resource type="BoxMesh" id="BoxMesh_na1ug"]
 material = ExtResource("9_qyvrw")
 size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qyvrw"]
+size = Vector3(0.1, 0.1, 0.10162506)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qyvrw"]
 albedo_color = Color(0.48380154, 0.0016496334, 0.69604117, 1)
@@ -77,7 +80,7 @@ emission_energy_multiplier = 0.49
 
 [sub_resource type="BoxMesh" id="BoxMesh_p7m58"]
 material = SubResource("StandardMaterial3D_qyvrw")
-size = Vector3(0.1, 0.1, 0.685)
+size = Vector3(0.1, 0.1, 1.0235449)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dqwil"]
 material = SubResource("StandardMaterial3D_arix4")
@@ -133,7 +136,7 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 4
 linear_damp = 0.05
-angular_damp = 0.05
+angular_damp = 0.2
 script = ExtResource("7_v1hjk")
 
 [node name="Golf Ball2" parent="BallController/Ball" unique_id=1954682578 instance=ExtResource("8_soxfw")]
@@ -216,19 +219,21 @@ mesh = SubResource("BoxMesh_na1ug")
 physics_material_override = ExtResource("9_ax0uj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="blue_button/MeshInstance3D/blue_button" unique_id=1016058437]
-shape = SubResource("BoxShape3D_iyxl4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0005195737)
+shape = SubResource("BoxShape3D_qyvrw")
 
 [node name="purple_button" type="Node3D" parent="." unique_id=53470879 groups=["buttons"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7483664, 0.12886566, -0.94476146)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="purple_button" unique_id=1018550659]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0019738674, -5.9604645e-08, 0.0014287233)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0019738674, -5.9604645e-08, -0.16784364)
 mesh = SubResource("BoxMesh_p7m58")
 
 [node name="purple_button" type="StaticBody3D" parent="purple_button/MeshInstance3D" unique_id=841552873 groups=["buttons"]]
 physics_material_override = ExtResource("9_ax0uj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="purple_button/MeshInstance3D/purple_button" unique_id=491351810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.077301025)
 shape = SubResource("BoxShape3D_iyxl4")
 
 [node name="red_barrier" type="Node3D" parent="." unique_id=429589154]

@@ -1,5 +1,5 @@
 class_name Ball
-extends RigidBody3D
+extends GenericBall
 
 signal red_button_hit(ball)
 signal blue_button_hit(ball)
@@ -45,6 +45,18 @@ var currently_in_motion_override = false
 #RAY
 var red_ray: MeshInstance3D
 var green_ray: MeshInstance3D
+
+# --- Bounce SFX ---
+var bounce_sounds := [
+	preload("res://sounds/bounce1.wav"),
+	preload("res://sounds/bounce2.wav"),
+	preload("res://sounds/bounce3.wav")
+]
+
+var bounce_cooldown := 0.05  # 50ms between sounds
+var last_bounce_time := 0.0
+var min_impact := 1.0        # ignore tiny taps
+
 func _ready() -> void:
 	label = %WinHoleLabel
 	yaw = rad_to_deg(rotation.y)
@@ -301,22 +313,54 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	grounded = is_grounded(state)
 	for i in state.get_contact_count():
 		var body = state.get_contact_collider_object(i)
+		if body:
 
-		if body and body.is_in_group("buttons"):
-			var button_name = body.name
-			print("Hit ", button_name)
-			match button_name:
-				"red_button":
-					red_button_hit.emit(self)
-				"blue_button":
-					blue_button_hit.emit(self)
-				"purple_button":
-					purple_button_hit.emit(self)
-				"green_button":
-					green_button_hit.emit(self)
+			if body.is_in_group("walls"):
+				var contact_vel := state.get_contact_local_velocity_at_position(i)
+				var impact := contact_vel.length()
+				print(str(impact))
+				if impact > min_impact:
+					play_bounce_sound(impact)
+			if body and body.is_in_group("buttons"):
+				var button_name = body.name
+				print("Hit ", button_name)
+				match button_name:
+					"red_button":
+						red_button_hit.emit(self)
+					"blue_button":
+						blue_button_hit.emit(self)
+					"purple_button":
+						purple_button_hit.emit(self)
+					"green_button":
+						green_button_hit.emit(self)
 				
+func play_bounce_sound(impact: float) -> void:
+	# Cooldown to prevent spam
+	var now := Time.get_ticks_msec()
+	if now - last_bounce_time < int(bounce_cooldown * 1000.0):
+		return
+	last_bounce_time = now
 
+	# Pick a random bounce sound
+	var stream = bounce_sounds.pick_random()
+
+	# Create a temporary player
+	var p := AudioStreamPlayer3D.new()
+	p.stream = stream
+
+	# Random pitch variation
+	p.pitch_scale = randf_range(0.9, 1.1)
+
+	# Volume based on impact strength
+	p.volume_db = lerp(-18, 0, clamp(impact / 10.0, 0.0, 1.0))
+
+	add_child(p)
+	p.play()
+
+	# Auto-delete when done
+	p.connect("finished", p.queue_free)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print("I KNEW YOU COULD DO IT!!!! THPS 3+4 MISSION PASSED THEME! FUCK HER!")
+	print("i knew you could do it")
 	label.show()
+	
