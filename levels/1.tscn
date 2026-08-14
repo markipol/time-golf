@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://bkk682wpaw181"]
 
-[ext_resource type="Script" uid="uid://c71o3svh73ojt" path="res://main.gd" id="1_8q5vr"]
-[ext_resource type="PackedScene" uid="uid://c5ndrmio44t7a" path="res://ball_controlled.tscn" id="3_khudx"]
-[ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="3_tsjc7"]
-[ext_resource type="AudioStream" uid="uid://k2opm4c1y0wa" path="res://sounds/castle_gate.wav" id="9_1kmic"]
-[ext_resource type="PackedScene" uid="uid://cmhy46iimgqa1" path="res://course1-real.glb" id="9_cl2tl"]
-[ext_resource type="PhysicsMaterial" uid="uid://da2on0bg165wb" path="res://floor_physics_material.tres" id="10_o3axj"]
-[ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="11_gr2yf"]
-[ext_resource type="Script" uid="uid://cyl3urqpwbk33" path="res://gate.gd" id="13_gumm7"]
+[ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="2_344tg"]
+[ext_resource type="PackedScene" uid="uid://c5ndrmio44t7a" path="res://ball_controlled.tscn" id="3_1diu1"]
+[ext_resource type="PackedScene" uid="uid://cmhy46iimgqa1" path="res://course1-real.glb" id="4_j0jco"]
+[ext_resource type="PhysicsMaterial" uid="uid://da2on0bg165wb" path="res://floor_physics_material.tres" id="5_gprjd"]
+[ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="6_6j3rm"]
+[ext_resource type="PackedScene" uid="uid://0nub35gm7r5j" path="res://level_passed.tscn" id="7_1diu1"]
+[ext_resource type="Script" uid="uid://cyl3urqpwbk33" path="res://gate.gd" id="7_sjybn"]
+[ext_resource type="PackedScene" uid="uid://bfvsd388ijvx5" path="res://during_hole.tscn" id="8_j0jco"]
+[ext_resource type="AudioStream" uid="uid://k2opm4c1y0wa" path="res://sounds/castle_gate.wav" id="8_s0nv6"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_m11on"]
-panorama = ExtResource("3_tsjc7")
+panorama = ExtResource("2_344tg")
 
 [sub_resource type="Sky" id="Sky_4xkj2"]
 sky_material = SubResource("PanoramaSkyMaterial_m11on")
@@ -76,7 +77,6 @@ size = Vector3(0.25, 0.25, 0.1)
 size = Vector3(0.25, 0.25, 0.1)
 
 [node name="Node3D" type="Node3D" unique_id=1383054765]
-script = ExtResource("1_8q5vr")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2116662129]
 environment = SubResource("Environment_02wvc")
@@ -98,41 +98,27 @@ surface_material_override/0 = SubResource("ShaderMaterial_5vw27")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.35399345)
 mesh = SubResource("PrismMesh_02wvc")
 
-[node name="Ball" parent="." unique_id=1936745447 instance=ExtResource("3_khudx")]
+[node name="Ball" parent="." unique_id=1936745447 instance=ExtResource("3_1diu1")]
 transform = Transform3D(-0.49999985, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999985, 0.21282977, 0.31389987, -0.024847567)
-debug_rays = null
-power_multiplier = null
-fixed_camera = null
-SPEED_THRESHOLD = null
-ANGULAR_THRESHOLD = null
-SETTLE_FRAMES = null
-settle_counter = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1861630881]
 transform = Transform3D(1, 0, 0, 0, -0.4795209, 0.87753046, 0, -0.87753046, -0.4795209, 0, 0, 0)
 shadow_enabled = true
 
-[node name="course1-real" parent="." unique_id=1838724994 instance=ExtResource("9_cl2tl")]
+[node name="course1-real" parent="." unique_id=1838724994 instance=ExtResource("4_j0jco")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.21816492, 0, -2.867461)
 
 [node name="StaticBody3D" parent="course1-real/floor" parent_id_path=PackedInt32Array(1838724994, 1075548939) index="0" unique_id=570318129]
-physics_material_override = ExtResource("10_o3axj")
+physics_material_override = ExtResource("5_gprjd")
 
 [node name="StaticBody3D" parent="course1-real/walls" parent_id_path=PackedInt32Array(1838724994, 654017013) index="0" unique_id=1830394558 groups=["walls"]]
-physics_material_override = ExtResource("11_gr2yf")
+physics_material_override = ExtResource("6_6j3rm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=76987635]
 
-[node name="Node2D" type="Node2D" parent="CanvasLayer" unique_id=375344589]
+[node name="LevelPassed" parent="CanvasLayer" unique_id=786258095 instance=ExtResource("7_1diu1")]
 
-[node name="WinHoleLabel" type="Label" parent="CanvasLayer/Node2D" unique_id=1455396676]
-unique_name_in_owner = true
-visible = false
-offset_left = 495.0
-offset_top = 339.0
-offset_right = 568.0
-offset_bottom = 362.0
-text = "you did it"
+[node name="DuringHole" parent="CanvasLayer" unique_id=1278250133 instance=ExtResource("8_j0jco")]
 
 [node name="hole" type="Area3D" parent="." unique_id=105525857]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
@@ -149,15 +135,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12886566, -1.6961315)
 mesh = SubResource("BoxMesh_igw2x")
 
 [node name="red_button" type="StaticBody3D" parent="red_button/MeshInstance3D" unique_id=626875833 groups=["buttons"]]
-physics_material_override = ExtResource("11_gr2yf")
+physics_material_override = ExtResource("6_6j3rm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="red_button/MeshInstance3D/red_button" unique_id=886796466]
 shape = SubResource("BoxShape3D_iyxl4")
 
 [node name="gate" type="Node3D" parent="." unique_id=1216292546]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23198378, 0.0797513, -1.6961315)
-script = ExtResource("13_gumm7")
-sound = ExtResource("9_1kmic")
+script = ExtResource("7_sjybn")
+sound = ExtResource("8_s0nv6")
 sound_percent_volume = 0.2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="gate" unique_id=1712509975]

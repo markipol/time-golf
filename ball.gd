@@ -38,7 +38,7 @@ var stem: MeshInstance3D
 var arrow: MeshInstance3D
 var shot_taken:bool = false
 var previous_shots:Array = []
-
+var hole_over: bool = false
 #RAY
 var red_ray: MeshInstance3D
 var green_ray: MeshInstance3D
@@ -47,10 +47,16 @@ var green_ray: MeshInstance3D
 var p: AudioStreamPlayer3D 
 @onready var hole_sound: AudioStream = preload("res://sounds/in_hole.wav")
 @onready var hit_sound: AudioStream = preload("res://sounds/boop.wav")
-
+var num_shots_taken: int = 0
+var level_passed: Control
+var during_hole: Control
 func _ready() -> void:
-	label = %WinHoleLabel
 	
+	var scene_root = get_tree().current_scene
+	level_passed = scene_root.get_node("CanvasLayer/LevelPassed")
+	during_hole = scene_root.get_node("CanvasLayer/DuringHole")
+	during_hole.show()
+	level_passed.hide()
 	p = AudioStreamPlayer3D.new()
 	add_child(p)
 	$InspectorArrow.hide()
@@ -129,7 +135,11 @@ func take_previous_shots():
 		%ghost_balls.add_child(g)
 		copy_button_signal_connections(self, g)
 		g.apply_central_impulse(shot)
+func update_during_hole_num_shots(num: int):
+	during_hole.update_shots_taken(num)
 func finish_shot():
+	
+	
 	for child in %ghost_balls.get_children():
 		child.queue_free()
 	take_previous_shots()
@@ -208,7 +218,7 @@ func _physics_process(_delta):
 
 
 		# --- SHOOT ---
-		if mouse_world_pos !=null:
+		if  not hole_over and mouse_world_pos !=null:
 			var shot_direction = global_position - mouse_world_pos
 			shot_direction.y = 0
 			if shot_direction.length_squared() > 0.001:
@@ -232,12 +242,14 @@ func _physics_process(_delta):
 			
 			
 			arrow_mat.albedo_color = col
-			print("PM", power_multiplier)
-			print("Clamped power meter" + str(percent_power_meter))
+			#print("PM", power_multiplier)
+			#print("Clamped power meter" + str(percent_power_meter))
 			power = clamped_power_meter * power_multiplier
 			#print("Power: ", str(power))
 			
-			if Input.is_action_just_pressed("shoot"):
+			if not hole_over and Input.is_action_just_pressed("shoot"):
+				num_shots_taken += 1
+				update_during_hole_num_shots(num_shots_taken)
 				#print("SHOT!")
 				#print("Power: ", power)
 				
@@ -260,16 +272,23 @@ func _physics_process(_delta):
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print("i knew you could do it")
-	var hole_player :AudioStreamPlayer3D= AudioStreamPlayer3D.new()
-	hole_player.stream = hole_sound
-	# Random pitch variation
-	hole_player.pitch_scale = randf_range(0.9, 1.1)
-	hole_player.volume_db = 12.0
-	add_child(hole_player)
-	hole_player.play()
+	if body is GenericBall:
+		currently_in_motion_override = true
+		hole_over = true
+		%ShotArrow.hide()
+		print("i knew you could do it")
+		var hole_player :AudioStreamPlayer3D= AudioStreamPlayer3D.new()
+		hole_player.stream = hole_sound
+		# Random pitch variation
+		hole_player.pitch_scale = randf_range(0.9, 1.1)
+		hole_player.volume_db = 12.0
+		add_child(hole_player)
+		hole_player.play()
 
-	# Auto-delete when done
-	hole_player.connect("finished", hole_player.queue_free)
-	label.show()
+		# Auto-delete when done
+		hole_player.connect("finished", hole_player.queue_free)
+		
+		during_hole.hide()
+		level_passed.update_shots_taken(num_shots_taken)
+		level_passed.show()
 	

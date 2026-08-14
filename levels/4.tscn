@@ -1,25 +1,26 @@
 [gd_scene format=3 uid="uid://dceu6lqlv3ej4"]
 
-[ext_resource type="Script" uid="uid://c71o3svh73ojt" path="res://main.gd" id="1_4rgew"]
-[ext_resource type="PhysicsMaterial" uid="uid://wn3f585ardup" path="res://ball_physics_mat.tres" id="5_bdsio"]
-[ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="6_rboyw"]
-[ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="7_or6ac"]
-[ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="8_de254"]
-[ext_resource type="Material" uid="uid://tnkhphr7ma8" path="res://red.tres" id="8_dmnlx"]
-[ext_resource type="PackedScene" uid="uid://bgu3cq0gea2oe" path="res://course4.glb" id="10_cme3c"]
-[ext_resource type="PhysicsMaterial" uid="uid://da2on0bg165wb" path="res://floor_physics_material.tres" id="11_4gqwf"]
-[ext_resource type="PackedScene" uid="uid://vl0n0f6lm2v2" path="res://wheel.glb" id="11_4rgew"]
-[ext_resource type="Script" uid="uid://bqajmd4iuqp1m" path="res://wheel_2.gd" id="12_n1qua"]
-[ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="12_s5ai3"]
-[ext_resource type="PackedScene" uid="uid://cikuyeh57hp38" path="res://supports.glb" id="12_sk34a"]
-[ext_resource type="PackedScene" uid="uid://1qvs7k5tk4it" path="res://cabin_group.tscn" id="13_4gqwf"]
-[ext_resource type="Script" uid="uid://d0f80dhsxsrtq" path="res://cabins_attacher.gd" id="15_s5ai3"]
-[ext_resource type="Material" uid="uid://b6uqqk3hrweb3" path="res://orange_cabin.tres" id="16_ke7fs"]
-[ext_resource type="Script" uid="uid://b2lk36uior8ej" path="res://ferris_wheel_animations.gd" id="17_ke7fs"]
-[ext_resource type="PackedScene" uid="uid://dq37hci76amio" path="res://frontflap.glb" id="18_inl6m"]
-[ext_resource type="PackedScene" uid="uid://c8bc401wo7lu2" path="res://rearflap.glb" id="19_s5ai3"]
-[ext_resource type="PackedScene" uid="uid://l42sppd7lqk3" path="res://fakeball.glb" id="20_x803h"]
-[ext_resource type="PackedScene" uid="uid://oilqd32iudcl" path="res://course4-upper.glb" id="22_inl6m"]
+[ext_resource type="PhysicsMaterial" uid="uid://wn3f585ardup" path="res://ball_physics_mat.tres" id="2_w4p07"]
+[ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="3_4owo4"]
+[ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="4_s2ntd"]
+[ext_resource type="PackedScene" uid="uid://0nub35gm7r5j" path="res://level_passed.tscn" id="5_3cdie"]
+[ext_resource type="Material" uid="uid://tnkhphr7ma8" path="res://red.tres" id="7_425at"]
+[ext_resource type="PackedScene" uid="uid://bfvsd388ijvx5" path="res://during_hole.tscn" id="7_w4p07"]
+[ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="8_agcnl"]
+[ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="9_6bol3"]
+[ext_resource type="PackedScene" uid="uid://bgu3cq0gea2oe" path="res://course4.glb" id="10_0cv5i"]
+[ext_resource type="PhysicsMaterial" uid="uid://da2on0bg165wb" path="res://floor_physics_material.tres" id="11_35fkw"]
+[ext_resource type="PackedScene" uid="uid://vl0n0f6lm2v2" path="res://wheel.glb" id="12_hca2t"]
+[ext_resource type="Script" uid="uid://bqajmd4iuqp1m" path="res://wheel_2.gd" id="13_ltxrm"]
+[ext_resource type="Script" uid="uid://d0f80dhsxsrtq" path="res://cabins_attacher.gd" id="14_64i4f"]
+[ext_resource type="PackedScene" uid="uid://1qvs7k5tk4it" path="res://cabin_group.tscn" id="15_jcld5"]
+[ext_resource type="Material" uid="uid://b6uqqk3hrweb3" path="res://orange_cabin.tres" id="16_njcwn"]
+[ext_resource type="PackedScene" uid="uid://cikuyeh57hp38" path="res://supports.glb" id="17_el4by"]
+[ext_resource type="Script" uid="uid://b2lk36uior8ej" path="res://ferris_wheel_animations.gd" id="18_6s5ce"]
+[ext_resource type="PackedScene" uid="uid://dq37hci76amio" path="res://frontflap.glb" id="19_orcg4"]
+[ext_resource type="PackedScene" uid="uid://c8bc401wo7lu2" path="res://rearflap.glb" id="20_hjsm8"]
+[ext_resource type="PackedScene" uid="uid://l42sppd7lqk3" path="res://fakeball.glb" id="21_bf1qh"]
+[ext_resource type="PackedScene" uid="uid://oilqd32iudcl" path="res://course4-upper.glb" id="22_g0dfm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
 radius = 0.021273103
@@ -61,14 +62,14 @@ shader = SubResource("Shader_5vw27")
 size = Vector3(0.15, 0.050117187, 0.15)
 
 [sub_resource type="BoxMesh" id="BoxMesh_igw2x"]
-material = ExtResource("8_dmnlx")
+material = ExtResource("7_425at")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iyxl4"]
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dqwil"]
-panorama = ExtResource("12_s5ai3")
+panorama = ExtResource("9_6bol3")
 
 [sub_resource type="Sky" id="Sky_4xkj2"]
 sky_material = SubResource("PanoramaSkyMaterial_dqwil")
@@ -82,7 +83,6 @@ height = 0.18
 radius = 0.74072266
 
 [node name="Node3D" type="Node3D" unique_id=1383054765]
-script = ExtResource("1_4rgew")
 
 [node name="BallController" type="Node3D" parent="." unique_id=1544432714]
 unique_name_in_owner = true
@@ -92,16 +92,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.314, -0.17598602)
 transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0, 0, 0)
 collision_layer = 2
 mass = 0.045
-physics_material_override = ExtResource("5_bdsio")
+physics_material_override = ExtResource("2_w4p07")
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 4
 linear_damp = 0.1
 angular_damp = 0.05
-script = ExtResource("6_rboyw")
+script = ExtResource("3_4owo4")
 fixed_camera = true
 
-[node name="Golf Ball2" parent="BallController/Ball" unique_id=1954682578 instance=ExtResource("7_or6ac")]
+[node name="Golf Ball2" parent="BallController/Ball" unique_id=1954682578 instance=ExtResource("4_s2ntd")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BallController/Ball" unique_id=1104073929]
 shape = SubResource("SphereShape3D_oc035")
@@ -141,16 +141,9 @@ shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=76987635]
 
-[node name="Node2D" type="Node2D" parent="CanvasLayer" unique_id=375344589]
+[node name="LevelPassed" parent="CanvasLayer" unique_id=786258095 instance=ExtResource("5_3cdie")]
 
-[node name="WinHoleLabel" type="Label" parent="CanvasLayer/Node2D" unique_id=1455396676]
-unique_name_in_owner = true
-visible = false
-offset_left = 495.0
-offset_top = 339.0
-offset_right = 568.0
-offset_bottom = 362.0
-text = "you did it"
+[node name="DuringHole" parent="CanvasLayer" unique_id=1278250133 instance=ExtResource("7_w4p07")]
 
 [node name="hole" type="Area3D" parent="." unique_id=105525857]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0030329227, 1.3123307, -3.2541878)
@@ -167,7 +160,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32228982, 0.12886566, -0.3
 mesh = SubResource("BoxMesh_igw2x")
 
 [node name="red_button" type="StaticBody3D" parent="red_button/MeshInstance3D" unique_id=626875833 groups=["buttons"]]
-physics_material_override = ExtResource("8_de254")
+physics_material_override = ExtResource("8_agcnl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="red_button/MeshInstance3D/red_button" unique_id=886796466]
 shape = SubResource("BoxShape3D_iyxl4")
@@ -180,7 +173,7 @@ visible = false
 mesh = SubResource("BoxMesh_igw2x")
 
 [node name="blue_button" type="StaticBody3D" parent="blue_button/MeshInstance3D" unique_id=616559125 groups=["buttons"]]
-physics_material_override = ExtResource("8_de254")
+physics_material_override = ExtResource("8_agcnl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="blue_button/MeshInstance3D/blue_button" unique_id=1548421925]
 shape = SubResource("BoxShape3D_iyxl4")
@@ -191,13 +184,13 @@ unique_name_in_owner = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1891250111]
 environment = SubResource("Environment_qyvrw")
 
-[node name="course4" parent="." unique_id=293376430 instance=ExtResource("10_cme3c")]
+[node name="course4" parent="." unique_id=293376430 instance=ExtResource("10_0cv5i")]
 
 [node name="fake-ball" parent="course4" index="0" unique_id=1235321681]
 visible = false
 
 [node name="StaticBody3D" parent="course4/floor" parent_id_path=PackedInt32Array(293376430, 1402119981) index="0" unique_id=1073486810]
-physics_material_override = ExtResource("11_4gqwf")
+physics_material_override = ExtResource("11_35fkw")
 
 [node name="front-flap" parent="course4" index="2" unique_id=1385388533]
 visible = false
@@ -206,11 +199,11 @@ visible = false
 visible = false
 
 [node name="StaticBody3D" parent="course4/walls" parent_id_path=PackedInt32Array(293376430, 493108944) index="0" unique_id=1743822363]
-physics_material_override = ExtResource("8_de254")
+physics_material_override = ExtResource("8_agcnl")
 
-[node name="wheel2" parent="." unique_id=1314381354 instance=ExtResource("11_4rgew")]
+[node name="wheel2" parent="." unique_id=1314381354 instance=ExtResource("12_hca2t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0019302666, 0.9948478, -1.6358759)
-script = ExtResource("12_n1qua")
+script = ExtResource("13_ltxrm")
 
 [node name="wheel_static_body" type="StaticBody3D" parent="wheel2" unique_id=1657704031]
 collision_mask = 0
@@ -220,204 +213,204 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 shape = SubResource("CylinderShape3D_n1qua")
 
 [node name="cabins" type="Node3D" parent="wheel2" unique_id=1306825928 node_paths=PackedStringArray("ball")]
-script = ExtResource("15_s5ai3")
+script = ExtResource("14_64i4f")
 ball = NodePath("../../BallController/Ball")
 
-[node name="cabin_group" parent="wheel2/cabins" unique_id=2046122872 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group" parent="wheel2/cabins" unique_id=2046122872 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006583713, -0.73707914, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(2046122872, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(2046122872, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(2046122872, 2036312370) index="1" unique_id=1772733036 groups=["cabins"]]
 collision_mask = 1
 
-[node name="cabin_group2" parent="wheel2/cabins" unique_id=1500015973 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group2" parent="wheel2/cabins" unique_id=1500015973 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.352, -0.63974184, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group2" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group2/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1500015973, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group2/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1500015973, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group2/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1500015973, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="cabin_group7" parent="wheel2/cabins" unique_id=266100994 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group7" parent="wheel2/cabins" unique_id=266100994 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.352, -0.63974184, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group7" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group7/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(266100994, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group7/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(266100994, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group7/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(266100994, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="cabin_group3" parent="wheel2/cabins" unique_id=568401957 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group3" parent="wheel2/cabins" unique_id=568401957 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6224407, -0.3909697, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group3" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group3/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(568401957, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group3/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(568401957, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group3/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(568401957, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="cabin_group8" parent="wheel2/cabins" unique_id=1563975260 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group8" parent="wheel2/cabins" unique_id=1563975260 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63657105, 0.4006455, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group8" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group8/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1563975260, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group8/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1563975260, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group8/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1563975260, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="cabin_group9" parent="wheel2/cabins" unique_id=648139696 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group9" parent="wheel2/cabins" unique_id=648139696 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6370001, 0.40062904, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group9" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group9/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(648139696, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group9/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(648139696, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group9/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(648139696, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="cabin_group10" parent="wheel2/cabins" unique_id=1876850896 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group10" parent="wheel2/cabins" unique_id=1876850896 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35675296, 0.618469, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group10" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group10/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1876850896, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group10/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1876850896, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group10/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1876850896, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="cabin_group11" parent="wheel2/cabins" unique_id=810002550 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group11" parent="wheel2/cabins" unique_id=810002550 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.357, 0.616997, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group11" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group11/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(810002550, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group11/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(810002550, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group11/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(810002550, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="cabin_group12" parent="wheel2/cabins" unique_id=1468916579 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group12" parent="wheel2/cabins" unique_id=1468916579 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0022132397, 0.7241596, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group12" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group12/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1468916579, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group12/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1468916579, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group12/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1468916579, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="cabin_group6" parent="wheel2/cabins" unique_id=1476722703 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group6" parent="wheel2/cabins" unique_id=1476722703 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.622, -0.39074183, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group6" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group6/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1476722703, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group6/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1476722703, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group6/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1476722703, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="cabin_group4" parent="wheel2/cabins" unique_id=944219648 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group4" parent="wheel2/cabins" unique_id=944219648 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7272903, -0.008434176, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group4" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group4/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(944219648, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group4/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(944219648, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group4/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(944219648, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="cabin_group5" parent="wheel2/cabins" unique_id=1885018850 instance=ExtResource("13_4gqwf")]
+[node name="cabin_group5" parent="wheel2/cabins" unique_id=1885018850 instance=ExtResource("15_jcld5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.727, -0.008741856, 0)
 
 [node name="PinJoint3D" parent="wheel2/cabins/cabin_group5" index="0" unique_id=377900744]
 node_a = NodePath("../../../wheel_static_body")
 
 [node name="cabin" parent="wheel2/cabins/cabin_group5/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1885018850, 975979226) index="0" unique_id=1006664822]
-surface_material_override/0 = ExtResource("16_ke7fs")
+surface_material_override/0 = ExtResource("16_njcwn")
 
 [node name="door" parent="wheel2/cabins/cabin_group5/PinJoint3D/cabin3/cabin2" parent_id_path=PackedInt32Array(1885018850, 975979226) index="1" unique_id=1096464987]
-surface_material_override/0 = ExtResource("8_dmnlx")
+surface_material_override/0 = ExtResource("7_425at")
 
 [node name="cabincapture" parent="wheel2/cabins/cabin_group5/PinJoint3D/cabin3" parent_id_path=PackedInt32Array(1885018850, 2036312370) index="1" unique_id=1772733036]
 collision_mask = 1
 
-[node name="supports2" parent="." unique_id=428079199 instance=ExtResource("12_sk34a")]
+[node name="supports2" parent="." unique_id=428079199 instance=ExtResource("17_el4by")]
 
 [node name="animationcontroller" type="Node3D" parent="." unique_id=671400163 node_paths=PackedStringArray("front_flap_AP", "rear_flap_AP", "fake_ball_AP", "fake_ball", "cabin_raycast")]
-script = ExtResource("17_ke7fs")
+script = ExtResource("18_6s5ce")
 front_flap_AP = NodePath("../frontflap/AnimationPlayer")
 rear_flap_AP = NodePath("../rearflap/AnimationPlayer")
 fake_ball_AP = NodePath("../fakeball/AnimationPlayer")
 fake_ball = NodePath("../fakeball/fake-ball")
 cabin_raycast = NodePath("../fakeball/fake-ball/RayCast3D")
 
-[node name="frontflap" parent="." unique_id=246966143 instance=ExtResource("18_inl6m")]
+[node name="frontflap" parent="." unique_id=246966143 instance=ExtResource("19_orcg4")]
 
-[node name="rearflap" parent="." unique_id=1742093823 instance=ExtResource("19_s5ai3")]
+[node name="rearflap" parent="." unique_id=1742093823 instance=ExtResource("20_hjsm8")]
 
-[node name="fakeball" parent="." unique_id=2109696454 instance=ExtResource("20_x803h")]
+[node name="fakeball" parent="." unique_id=2109696454 instance=ExtResource("21_bf1qh")]
 
 [node name="fake-ball" parent="fakeball" index="0" unique_id=1759347564]
 visible = false
@@ -428,13 +421,14 @@ hit_from_inside = true
 collide_with_areas = true
 debug_shape_thickness = 5
 
-[node name="course4-upper" parent="." unique_id=2040815957 instance=ExtResource("22_inl6m")]
+[node name="course4-upper" parent="." unique_id=2040815957 instance=ExtResource("22_g0dfm")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=293382922]
 
 [connection signal="blue_button_hit" from="BallController/Ball" to="animationcontroller" method="ball_hit_entry"]
 [connection signal="body_entered" from="hole" to="BallController/Ball" method="_on_area_3d_body_entered"]
 
+[editable path="CanvasLayer/LevelPassed"]
 [editable path="course4"]
 [editable path="wheel2"]
 [editable path="wheel2/cabins/cabin_group"]

@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://djun8dfwq1ivq"]
 
-[ext_resource type="Script" uid="uid://c71o3svh73ojt" path="res://main.gd" id="1_na1ug"]
-[ext_resource type="PackedScene" uid="uid://7u10ighvfqc4" path="res://kenney_minigolf-kit/Models/GLB format/straight.glb" id="2_fs6mp"]
-[ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="3_p7m58"]
-[ext_resource type="PackedScene" uid="uid://dndrtyreluq5w" path="res://kenney_minigolf-kit/Models/GLB format/hole-round.glb" id="4_05847"]
-[ext_resource type="PackedScene" uid="uid://dh3scxi7nciy6" path="res://kenney_minigolf-kit/Models/GLB format/end.glb" id="5_umd0t"]
-[ext_resource type="PhysicsMaterial" uid="uid://wn3f585ardup" path="res://ball_physics_mat.tres" id="6_jonx2"]
-[ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="7_v1hjk"]
-[ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="8_soxfw"]
-[ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="9_ax0uj"]
-[ext_resource type="Script" uid="uid://dqgconhlt5mid" path="res://barrier.gd" id="9_dqwil"]
-[ext_resource type="Material" uid="uid://ddcm5le3aad74" path="res://blue.tres" id="9_qyvrw"]
-[ext_resource type="PackedScene" uid="uid://bo7iw5in2f7dt" path="res://course3.glb" id="11_qyvrw"]
+[ext_resource type="PackedScene" uid="uid://7u10ighvfqc4" path="res://kenney_minigolf-kit/Models/GLB format/straight.glb" id="2_rmalv"]
+[ext_resource type="PackedScene" uid="uid://dndrtyreluq5w" path="res://kenney_minigolf-kit/Models/GLB format/hole-round.glb" id="3_dahul"]
+[ext_resource type="PackedScene" uid="uid://dh3scxi7nciy6" path="res://kenney_minigolf-kit/Models/GLB format/end.glb" id="4_b5oho"]
+[ext_resource type="PhysicsMaterial" uid="uid://wn3f585ardup" path="res://ball_physics_mat.tres" id="5_tu8vi"]
+[ext_resource type="Script" uid="uid://b16uwnp62ijmh" path="res://ball.gd" id="6_nxade"]
+[ext_resource type="PackedScene" uid="uid://b6ugy0nq44gr2" path="res://golf_ball.tscn" id="7_ko147"]
+[ext_resource type="PackedScene" uid="uid://bfvsd388ijvx5" path="res://during_hole.tscn" id="8_5py5q"]
+[ext_resource type="PackedScene" uid="uid://0nub35gm7r5j" path="res://level_passed.tscn" id="9_d8t8u"]
+[ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="10_teqxt"]
+[ext_resource type="Material" uid="uid://ddcm5le3aad74" path="res://blue.tres" id="11_4wbsc"]
+[ext_resource type="Script" uid="uid://dqgconhlt5mid" path="res://barrier.gd" id="12_pms1i"]
+[ext_resource type="PackedScene" uid="uid://bo7iw5in2f7dt" path="res://course3.glb" id="13_a02vw"]
+[ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="14_dk0ml"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oc035"]
 radius = 0.021273103
@@ -59,11 +60,11 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_arix4")
 size = Vector3(0.1, 0.1, 0.1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_iyxl4"]
-size = Vector3(0.1, 0.1, 0.867688)
+[sub_resource type="BoxShape3D" id="BoxShape3D_0phfa"]
+size = Vector3(0.1, 0.1, 0.105715945)
 
 [sub_resource type="BoxMesh" id="BoxMesh_na1ug"]
-material = ExtResource("9_qyvrw")
+material = ExtResource("11_4wbsc")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qyvrw"]
@@ -82,6 +83,9 @@ emission_energy_multiplier = 0.49
 material = SubResource("StandardMaterial3D_qyvrw")
 size = Vector3(0.1, 0.1, 1.0235449)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_iyxl4"]
+size = Vector3(0.1, 0.1, 0.867688)
+
 [sub_resource type="BoxMesh" id="BoxMesh_dqwil"]
 material = SubResource("StandardMaterial3D_arix4")
 size = Vector3(0.1, 0.1, 0.855)
@@ -97,11 +101,11 @@ material = SubResource("StandardMaterial3D_umd0t")
 size = Vector3(0.1, 0.1, 0.855)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fs6mp"]
-material = ExtResource("9_qyvrw")
+material = ExtResource("11_4wbsc")
 size = Vector3(0.1, 0.1, 0.855)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dqwil"]
-panorama = ExtResource("3_p7m58")
+panorama = ExtResource("14_dk0ml")
 
 [sub_resource type="Sky" id="Sky_4xkj2"]
 sky_material = SubResource("PanoramaSkyMaterial_dqwil")
@@ -111,17 +115,16 @@ background_mode = 2
 sky = SubResource("Sky_4xkj2")
 
 [node name="Node3D" type="Node3D" unique_id=1383054765]
-script = ExtResource("1_na1ug")
 
-[node name="straight2" parent="." unique_id=871488194 instance=ExtResource("2_fs6mp")]
+[node name="straight2" parent="." unique_id=871488194 instance=ExtResource("2_rmalv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 visible = false
 
-[node name="hole-round2" parent="." unique_id=74229217 instance=ExtResource("4_05847")]
+[node name="hole-round2" parent="." unique_id=74229217 instance=ExtResource("3_dahul")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -2)
 visible = false
 
-[node name="end2" parent="." unique_id=1561097105 instance=ExtResource("5_umd0t")]
+[node name="end2" parent="." unique_id=1561097105 instance=ExtResource("4_b5oho")]
 visible = false
 
 [node name="BallController" type="Node3D" parent="." unique_id=1544432714]
@@ -131,15 +134,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.098328054, 0.31389987, 0.2
 transform = Transform3D(-0.49999988, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.49999988, 0, 0, 0)
 collision_layer = 2
 mass = 0.045
-physics_material_override = ExtResource("6_jonx2")
+physics_material_override = ExtResource("5_tu8vi")
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 4
 linear_damp = 0.05
 angular_damp = 0.2
-script = ExtResource("7_v1hjk")
+script = ExtResource("6_nxade")
 
-[node name="Golf Ball2" parent="BallController/Ball" unique_id=1954682578 instance=ExtResource("8_soxfw")]
+[node name="Golf Ball2" parent="BallController/Ball" unique_id=1954682578 instance=ExtResource("7_ko147")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BallController/Ball" unique_id=1104073929]
 shape = SubResource("SphereShape3D_oc035")
@@ -179,16 +182,9 @@ shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=76987635]
 
-[node name="Node2D" type="Node2D" parent="CanvasLayer" unique_id=375344589]
+[node name="DuringHole" parent="CanvasLayer" unique_id=1278250133 instance=ExtResource("8_5py5q")]
 
-[node name="WinHoleLabel" type="Label" parent="CanvasLayer/Node2D" unique_id=1455396676]
-unique_name_in_owner = true
-visible = false
-offset_left = 495.0
-offset_top = 339.0
-offset_right = 568.0
-offset_bottom = 362.0
-text = "you did it"
+[node name="LevelPassed" parent="CanvasLayer" unique_id=786258095 instance=ExtResource("9_d8t8u")]
 
 [node name="hole" type="Area3D" parent="." unique_id=105525857]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022801638, 0, -1.9714296)
@@ -204,10 +200,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32228982, 0.12886566, -0.3
 mesh = SubResource("BoxMesh_igw2x")
 
 [node name="red_button" type="StaticBody3D" parent="red_button/MeshInstance3D" unique_id=626875833 groups=["buttons"]]
-physics_material_override = ExtResource("9_ax0uj")
+physics_material_override = ExtResource("10_teqxt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="red_button/MeshInstance3D/red_button" unique_id=886796466]
-shape = SubResource("BoxShape3D_iyxl4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0037826598)
+shape = SubResource("BoxShape3D_0phfa")
 
 [node name="blue_button" type="Node3D" parent="." unique_id=1285092889 groups=["buttons"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3243677, 0.12886566, -0.32294768)
@@ -216,7 +213,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3243677, 0.12886566, -0.322
 mesh = SubResource("BoxMesh_na1ug")
 
 [node name="blue_button" type="StaticBody3D" parent="blue_button/MeshInstance3D" unique_id=1559612630 groups=["buttons"]]
-physics_material_override = ExtResource("9_ax0uj")
+physics_material_override = ExtResource("10_teqxt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="blue_button/MeshInstance3D/blue_button" unique_id=1016058437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0005195737)
@@ -230,7 +227,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0019738674, -5.9604645e-08
 mesh = SubResource("BoxMesh_p7m58")
 
 [node name="purple_button" type="StaticBody3D" parent="purple_button/MeshInstance3D" unique_id=841552873 groups=["buttons"]]
-physics_material_override = ExtResource("9_ax0uj")
+physics_material_override = ExtResource("10_teqxt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="purple_button/MeshInstance3D/purple_button" unique_id=491351810]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.077301025)
@@ -238,42 +235,42 @@ shape = SubResource("BoxShape3D_iyxl4")
 
 [node name="red_barrier" type="Node3D" parent="." unique_id=429589154]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4455669, 0.12886566, -0.9495531)
-script = ExtResource("9_dqwil")
+script = ExtResource("12_pms1i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="red_barrier" unique_id=675557509]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016337171, 0)
 mesh = SubResource("BoxMesh_dqwil")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="red_barrier/MeshInstance3D" unique_id=2115184761]
-physics_material_override = ExtResource("9_ax0uj")
+physics_material_override = ExtResource("10_teqxt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="red_barrier/MeshInstance3D/StaticBody3D" unique_id=1149987784]
 shape = SubResource("BoxShape3D_dqwil")
 
 [node name="purple_barrier" type="Node3D" parent="." unique_id=1495199021]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0.00058686733, 0.12886566, -1.4481275)
-script = ExtResource("9_dqwil")
+script = ExtResource("12_pms1i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="purple_barrier" unique_id=1823551244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016337171, 0)
 mesh = SubResource("BoxMesh_jonx2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="purple_barrier/MeshInstance3D" unique_id=421726628]
-physics_material_override = ExtResource("9_ax0uj")
+physics_material_override = ExtResource("10_teqxt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="purple_barrier/MeshInstance3D/StaticBody3D" unique_id=1439619647]
 shape = SubResource("BoxShape3D_dqwil")
 
 [node name="blue_barrier" type="Node3D" parent="." unique_id=1785953636]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57199717, 0.12886566, -0.9495531)
-script = ExtResource("9_dqwil")
+script = ExtResource("12_pms1i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="blue_barrier" unique_id=1956560056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016337171, 0)
 mesh = SubResource("BoxMesh_fs6mp")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="blue_barrier/MeshInstance3D" unique_id=1638469201]
-physics_material_override = ExtResource("9_ax0uj")
+physics_material_override = ExtResource("10_teqxt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="blue_barrier/MeshInstance3D/StaticBody3D" unique_id=1105959464]
 shape = SubResource("BoxShape3D_dqwil")
@@ -281,11 +278,11 @@ shape = SubResource("BoxShape3D_dqwil")
 [node name="ghost_balls" type="Node3D" parent="." unique_id=436513514]
 unique_name_in_owner = true
 
-[node name="course3" parent="." unique_id=1852598397 instance=ExtResource("11_qyvrw")]
+[node name="course3" parent="." unique_id=1852598397 instance=ExtResource("13_a02vw")]
 
 [node name="gate" parent="course3" index="1" unique_id=1129163095]
 visible = false
-script = ExtResource("9_dqwil")
+script = ExtResource("12_pms1i")
 
 [node name="CollisionShape3D" parent="course3/gate/StaticBody3D" parent_id_path=PackedInt32Array(1852598397, 755531222) index="0" unique_id=632488500]
 disabled = true

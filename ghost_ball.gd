@@ -58,7 +58,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 					play_bounce_sound(impact)
 			if body and body.is_in_group("buttons"):
 				var button_name = body.name
-				print("Hit ", button_name)
+				
 				match button_name:
 					"red_button":
 						red_button_hit.emit(self)

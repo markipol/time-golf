@@ -1,0 +1,255 @@
+[gd_scene format=3 uid="uid://cc5vovr36kyua"]
+
+[ext_resource type="Script" uid="uid://c71o3svh73ojt" path="res://main.gd" id="1_83o5j"]
+[ext_resource type="Texture2D" uid="uid://kh6ocou6tsbe" path="res://horn-koppe_spring_4k.hdr" id="2_arjgf"]
+[ext_resource type="PackedScene" uid="uid://cmhy46iimgqa1" path="res://course1-real.glb" id="4_6b4d5"]
+[ext_resource type="PhysicsMaterial" uid="uid://da2on0bg165wb" path="res://floor_physics_material.tres" id="5_wou60"]
+[ext_resource type="PhysicsMaterial" uid="uid://doxo061e10c44" path="res://wall_physics_mat.tres" id="6_8oaol"]
+[ext_resource type="Script" uid="uid://d0gm5v5hvg2ph" path="res://main_menu.gd" id="6_fmrhl"]
+[ext_resource type="LabelSettings" uid="uid://c64optbpqxv88" path="res://subheading.tres" id="7_0v3g1"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_m11on"]
+panorama = ExtResource("2_arjgf")
+
+[sub_resource type="Sky" id="Sky_4xkj2"]
+sky_material = SubResource("PanoramaSkyMaterial_m11on")
+
+[sub_resource type="Environment" id="Environment_02wvc"]
+background_mode = 2
+sky = SubResource("Sky_4xkj2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_py581"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_02wvc"]
+material = SubResource("StandardMaterial3D_py581")
+size = Vector3(0.03, 0.03, 0.3)
+
+[sub_resource type="Shader" id="Shader_5vw27"]
+code = "shader_type spatial;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+render_priority = 0
+shader = SubResource("Shader_5vw27")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_02wvc"]
+material = SubResource("StandardMaterial3D_5vw27")
+size = Vector3(0.05, 0.03, 0.03)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jry3q"]
+font_size = 80
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0.9607843, 0.16078432, 0.25882354, 0.7254902)
+shadow_offset = Vector2(5.545, 3.045)
+
+[sub_resource type="LabelSettings" id="LabelSettings_83o5j"]
+font_size = 24
+font_color = Color(1, 0.13333334, 1, 1)
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_igw2x"]
+size = Vector3(0.15, 0.15, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arix4"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_igw2x"]
+material = SubResource("StandardMaterial3D_arix4")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iyxl4"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
+albedo_color = Color(0.5087912, 0.54734945, 0.5135662, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_efxa6"]
+material = SubResource("StandardMaterial3D_4c57u")
+size = Vector3(0.25, 0.25, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dg77c"]
+size = Vector3(0.25, 0.25, 0.1)
+
+[node name="Node3D" type="Node3D" unique_id=1383054765]
+script = ExtResource("1_83o5j")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2116662129]
+environment = SubResource("Environment_02wvc")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1684026385]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.6618027, 0.74967813, 0, -0.74967813, 0.6618027, 0.21282977, 2.0593827, 1.1988959)
+
+[node name="ShotArrow" type="Node3D" parent="." unique_id=1968826682]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 0.21282977, 0.31389987, -0.024847567)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ShotArrow" unique_id=266339390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.18911491)
+mesh = SubResource("BoxMesh_02wvc")
+surface_material_override/0 = SubResource("ShaderMaterial_5vw27")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ShotArrow" unique_id=900870742]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.35399345)
+mesh = SubResource("PrismMesh_02wvc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1861630881]
+transform = Transform3D(1, 0, 0, 0, -0.4795209, 0.87753046, 0, -0.87753046, -0.4795209, 0, 0, 0)
+shadow_enabled = true
+
+[node name="course1-real" parent="." unique_id=1838724994 instance=ExtResource("4_6b4d5")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.21816492, 0, -2.867461)
+
+[node name="StaticBody3D" parent="course1-real/floor" parent_id_path=PackedInt32Array(1838724994, 1075548939) index="0" unique_id=570318129]
+physics_material_override = ExtResource("5_wou60")
+
+[node name="StaticBody3D" parent="course1-real/walls" parent_id_path=PackedInt32Array(1838724994, 654017013) index="0" unique_id=1830394558 groups=["walls"]]
+physics_material_override = ExtResource("6_8oaol")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=76987635]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1700322786]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_fmrhl")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control" unique_id=514755863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer" unique_id=2067805577]
+layout_mode = 2
+
+[node name="heading" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1873432351]
+unique_name_in_owner = true
+layout_mode = 2
+text = "time golf"
+label_settings = SubResource("LabelSettings_jry3q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="explain1" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1154889607]
+layout_mode = 2
+text = "hit the coloured cubes with your shots,"
+label_settings = ExtResource("7_0v3g1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="explain2" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1768880189]
+layout_mode = 2
+text = "the next one starts from the same position,"
+label_settings = ExtResource("7_0v3g1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="explain3" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1867670446]
+layout_mode = 2
+text = "but with the previous shot replayed."
+label_settings = ExtResource("7_0v3g1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="levelselector" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1046803616]
+layout_mode = 2
+text = "level selector:"
+label_settings = SubResource("LabelSettings_83o5j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1170337590]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="one" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=415716671]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.13333334, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "one"
+
+[node name="two" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1673151368]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.13333334, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "two"
+
+[node name="three" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=225627249]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.13333334, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "three"
+
+[node name="four" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=617493195]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.13333334, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "four"
+
+[node name="hole" type="Area3D" parent="." unique_id=105525857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hole" unique_id=423218514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23144953, -0.024865683, 0.12996054)
+shape = SubResource("BoxShape3D_igw2x")
+
+[node name="red_button" type="Node3D" parent="." unique_id=869062564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12886566, -1.6961315)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="red_button" unique_id=197112086]
+mesh = SubResource("BoxMesh_igw2x")
+
+[node name="red_button" type="StaticBody3D" parent="red_button/MeshInstance3D" unique_id=626875833 groups=["buttons"]]
+physics_material_override = ExtResource("6_8oaol")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="red_button/MeshInstance3D/red_button" unique_id=886796466]
+shape = SubResource("BoxShape3D_iyxl4")
+
+[node name="gate" type="Node3D" parent="." unique_id=1216292546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23198378, 0.0797513, -1.6961315)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gate" unique_id=1712509975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015527338, 0, 0)
+mesh = SubResource("BoxMesh_efxa6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="gate/MeshInstance3D" unique_id=1791984622]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gate/MeshInstance3D/StaticBody3D" unique_id=2030874466]
+shape = SubResource("BoxShape3D_dg77c")
+
+[node name="ghost_balls" type="Node3D" parent="." unique_id=436513514]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2/one" to="CanvasLayer/Control" method="load_level" binds= [1]]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2/two" to="CanvasLayer/Control" method="load_level" binds= [2]]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2/three" to="CanvasLayer/Control" method="load_level" binds= [3]]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2/four" to="CanvasLayer/Control" method="load_level" binds= [4]]
+
+[editable path="course1-real"]

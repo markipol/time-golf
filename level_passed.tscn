@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://0nub35gm7r5j"]
+
+[ext_resource type="LabelSettings" uid="uid://c64optbpqxv88" path="res://subheading.tres" id="1_jnd1n"]
+[ext_resource type="Script" uid="uid://cy25xejvm5elw" path="res://level_passed.gd" id="1_xwuoi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oc035"]
+font_size = 64
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0.9607843, 0.16078432, 0.25882354, 0.7254902)
+shadow_offset = Vector2(5.545, 3.045)
+
+[node name="LevelPassed" type="Control" unique_id=786258095]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xwuoi")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1190688877]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=674883847]
+layout_mode = 2
+
+[node name="WinHoleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1092316017]
+unique_name_in_owner = true
+layout_mode = 2
+text = "you did it"
+label_settings = SubResource("LabelSettings_oc035")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1167767054]
+layout_mode = 2
+alignment = 1
+
+[node name="ShotsTakenExplainer" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=1019682780]
+layout_mode = 2
+text = "shots taken: "
+label_settings = ExtResource("1_jnd1n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Number" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=849370149]
+layout_mode = 2
+text = "<number>"
+label_settings = ExtResource("1_jnd1n")
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1610783496]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1536355597]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "main menu"
+
+[node name="NextLevel" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2" unique_id=295149791]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "next level"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/MainMenu" to="." method="main_menu"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/NextLevel" to="." method="_on_next_level_pressed"]
