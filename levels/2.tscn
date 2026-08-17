@@ -73,7 +73,7 @@ size = Vector3(0.1, 0.1, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_iyxl4"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="Node3D" type="Node3D" unique_id=1383054765]
+[node name="2" type="Node3D" unique_id=1383054765]
 
 [node name="straight2" parent="." unique_id=871488194 instance=ExtResource("2_ohgqg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
@@ -172,16 +172,16 @@ unique_name_in_owner = true
 [node name="course2" parent="." unique_id=2071720337 instance=ExtResource("10_6vbea")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.036416262, 0, -1.5549953)
 
-[node name="blades" parent="course2" index="0" unique_id=1445976514]
+[node name="blades" parent="course2" index="0" unique_id=847868508]
 script = ExtResource("11_mnvrq")
 
-[node name="StaticBody3D" parent="course2/blades" index="0" unique_id=953097195]
+[node name="StaticBody3D" parent="course2/blades" index="0" unique_id=2114785797]
 physics_material_override = ExtResource("9_cp2by")
 
-[node name="StaticBody3D" parent="course2/floor" parent_id_path=PackedInt32Array(2071720337, 2065736388) index="0" unique_id=1013635751]
+[node name="StaticBody3D" parent="course2/floor" parent_id_path=PackedInt32Array(2071720337, 556242956) index="0" unique_id=1212033416]
 physics_material_override = ExtResource("12_khhxk")
 
-[node name="StaticBody3D" parent="course2/walls" parent_id_path=PackedInt32Array(2071720337, 844791500) index="0" unique_id=1738615893]
+[node name="StaticBody3D" parent="course2/walls" parent_id_path=PackedInt32Array(2071720337, 34388470) index="0" unique_id=878322130]
 physics_material_override = ExtResource("9_cp2by")
 
 [connection signal="red_button_hit" from="BallController/Ball" to="course2/blades" method="activate"]

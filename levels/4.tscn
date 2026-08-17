@@ -82,7 +82,7 @@ sky = SubResource("Sky_4xkj2")
 height = 0.18
 radius = 0.74072266
 
-[node name="Node3D" type="Node3D" unique_id=1383054765]
+[node name="4" type="Node3D" unique_id=1383054765]
 
 [node name="BallController" type="Node3D" parent="." unique_id=1544432714]
 unique_name_in_owner = true
@@ -186,19 +186,19 @@ environment = SubResource("Environment_qyvrw")
 
 [node name="course4" parent="." unique_id=293376430 instance=ExtResource("10_0cv5i")]
 
-[node name="fake-ball" parent="course4" index="0" unique_id=1235321681]
+[node name="fake-ball" parent="course4" index="0" unique_id=1228502533]
 visible = false
 
-[node name="StaticBody3D" parent="course4/floor" parent_id_path=PackedInt32Array(293376430, 1402119981) index="0" unique_id=1073486810]
+[node name="StaticBody3D" parent="course4/floor" parent_id_path=PackedInt32Array(293376430, 1183846212) index="0" unique_id=1762759376]
 physics_material_override = ExtResource("11_35fkw")
 
-[node name="front-flap" parent="course4" index="2" unique_id=1385388533]
+[node name="front-flap" parent="course4" index="2" unique_id=258666599]
 visible = false
 
-[node name="rear-flap" parent="course4" index="7" unique_id=652427037]
+[node name="rear-flap" parent="course4" index="7" unique_id=2106842391]
 visible = false
 
-[node name="StaticBody3D" parent="course4/walls" parent_id_path=PackedInt32Array(293376430, 493108944) index="0" unique_id=1743822363]
+[node name="StaticBody3D" parent="course4/walls" parent_id_path=PackedInt32Array(293376430, 620758547) index="0" unique_id=777997902]
 physics_material_override = ExtResource("8_agcnl")
 
 [node name="wheel2" parent="." unique_id=1314381354 instance=ExtResource("12_hca2t")]
@@ -412,7 +412,7 @@ cabin_raycast = NodePath("../fakeball/fake-ball/RayCast3D")
 
 [node name="fakeball" parent="." unique_id=2109696454 instance=ExtResource("21_bf1qh")]
 
-[node name="fake-ball" parent="fakeball" index="0" unique_id=1759347564]
+[node name="fake-ball" parent="fakeball" index="0" unique_id=177222091]
 visible = false
 
 [node name="RayCast3D" type="RayCast3D" parent="fakeball/fake-ball" index="1" unique_id=2096918959]

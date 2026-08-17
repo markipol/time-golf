@@ -1,12 +1,11 @@
 class_name LevelPassed
 extends Control
 func _on_next_level_pressed():
-	var path = get_tree().current_scene.scene_file_path
-	var filename = path.get_file()                    # "1.tscn"
-	var number = int(filename.get_basename())         # 1
+	var number = get_tree().current_scene.name
+			# 1
 
-	var next_number = number + 1
-	var next_path = "res://levels/%d.tscn" % next_number     # "res://2.tscn"
+	var next_number = str(int(number) + 1)
+	var next_path = "res://levels/"+ next_number + ".tscn"     # "res://2.tscn"
 
 	print("Loading:", next_path)
 	

@@ -9,3 +9,4 @@ func _ready():
 	var screen_pos = DisplayServer.screen_get_position()
 	var centered_pos = screen_pos + (screen_size - half_size) / 2
 	DisplayServer.window_set_position(centered_pos)
+"res://main_menu.gd"

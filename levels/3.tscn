@@ -114,7 +114,7 @@ sky_material = SubResource("PanoramaSkyMaterial_dqwil")
 background_mode = 2
 sky = SubResource("Sky_4xkj2")
 
-[node name="Node3D" type="Node3D" unique_id=1383054765]
+[node name="3" type="Node3D" unique_id=1383054765]
 
 [node name="straight2" parent="." unique_id=871488194 instance=ExtResource("2_rmalv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
@@ -280,11 +280,11 @@ unique_name_in_owner = true
 
 [node name="course3" parent="." unique_id=1852598397 instance=ExtResource("13_a02vw")]
 
-[node name="gate" parent="course3" index="1" unique_id=1129163095]
+[node name="gate" parent="course3" index="1" unique_id=50204574]
 visible = false
 script = ExtResource("12_pms1i")
 
-[node name="CollisionShape3D" parent="course3/gate/StaticBody3D" parent_id_path=PackedInt32Array(1852598397, 755531222) index="0" unique_id=632488500]
+[node name="CollisionShape3D" parent="course3/gate/StaticBody3D" parent_id_path=PackedInt32Array(1852598397, 1673885850) index="0" unique_id=1709506012]
 disabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1891250111]

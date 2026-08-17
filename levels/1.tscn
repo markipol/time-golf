@@ -76,7 +76,7 @@ size = Vector3(0.25, 0.25, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dg77c"]
 size = Vector3(0.25, 0.25, 0.1)
 
-[node name="Node3D" type="Node3D" unique_id=1383054765]
+[node name="1" type="Node3D" unique_id=1383054765]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2116662129]
 environment = SubResource("Environment_02wvc")
@@ -108,10 +108,10 @@ shadow_enabled = true
 [node name="course1-real" parent="." unique_id=1838724994 instance=ExtResource("4_j0jco")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.21816492, 0, -2.867461)
 
-[node name="StaticBody3D" parent="course1-real/floor" parent_id_path=PackedInt32Array(1838724994, 1075548939) index="0" unique_id=570318129]
+[node name="StaticBody3D" parent="course1-real/floor" parent_id_path=PackedInt32Array(1838724994, 2084520073) index="0" unique_id=723575291]
 physics_material_override = ExtResource("5_gprjd")
 
-[node name="StaticBody3D" parent="course1-real/walls" parent_id_path=PackedInt32Array(1838724994, 654017013) index="0" unique_id=1830394558 groups=["walls"]]
+[node name="StaticBody3D" parent="course1-real/walls" parent_id_path=PackedInt32Array(1838724994, 286912501) index="0" unique_id=232551703 groups=["walls"]]
 physics_material_override = ExtResource("6_6j3rm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=76987635]
